@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MyHomeProject</string>
+    <string name="new_recipe">Новый рецепт</string>
+    <string name="addPhoto">Добавить фотографию</string>
+    <string name="recipe_name">Укажите название рецепта</string>
+    <string name="ingredients">Ингредиенты</string>
+    <string name="enter_ingredients">Укажите ингредиент и количество</string>
+    <string name="addIngredients">Добавить ингредиент</string>
+    <string name="instraction">Инструкция</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_pass">Пароль</string>
+    <string name="log_in_btn_text">Войти</string>
+    <string name="singUp"><b>Зарегистрироваться</b></string>
+    <string name="full_name">Имя</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="email_exist">Данный email существует</string>
+    <string name="please_enter_email">Пожалуйста введите email</string>
+    <string name="username">Username</string>
+    <string name="enter_fields">Заполните все поля</string>
+    <string name="enter_email_and_password">Введите email и пароль</string>
+</resources>
