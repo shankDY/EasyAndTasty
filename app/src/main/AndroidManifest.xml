@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="homeproject.example.com.myhomeproject">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:name=".screens.App"

@@ -3,11 +3,11 @@ package homeproject.example.com.myhomeproject.screens.common
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.support.v4.app.Fragment
 import android.os.Bundle
-import android.view.ViewGroup
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import homeproject.example.com.myhomeproject.screens.App
 
 
@@ -42,6 +42,7 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         commonViewModel = ViewModelProviders.of(this).get(CommonViewModel::class.java)
+
 
         //обработчик ошибок
         commonViewModel.errorMessage.observe(this, Observer{it?.let{

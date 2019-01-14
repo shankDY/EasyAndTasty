@@ -1,6 +1,9 @@
 package homeproject.example.com.myhomeproject.data.firebase.common
 
 import android.arch.lifecycle.LiveData
+import android.content.Context
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -22,3 +25,11 @@ fun currentUid(): String? = auth.currentUser?.uid
 //возвращает нам liveDATA
 fun DatabaseReference.liveData(): LiveData<DataSnapshot> = FirebaseLiveData(this)
 
+//        // Configure Google Sign In
+val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+    .requestIdToken("847404471501-9o80te7fpo8uttrdcat5di5ib5m31k10.apps.googleusercontent.com")
+    .requestEmail()
+    .build()
+
+//create google sigin client
+fun googleSignInClient(context: Context) = GoogleSignIn.getClient(context, gso)
