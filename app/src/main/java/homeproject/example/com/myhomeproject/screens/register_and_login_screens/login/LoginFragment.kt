@@ -59,6 +59,9 @@ class LoginFragment : BaseFragment(){
         buttonEmailLogin.setOnClickListener(Navigation.createNavigateOnClickListener(
             R.id.action_loginFragment_to_registerFragment, null))
 
+        //переход на ForgotPasswordFragment
+        forgot_password_text.setOnClickListener(Navigation.createNavigateOnClickListener(
+            R.id.action_loginFragment_to_forgotPasswordFragment,null))
 
         //при успешной авторизации переходим в MainActivity, с которой разворачиваем HomeFragment
         mViewModel.goToHomeScreen.observe(this, Observer {

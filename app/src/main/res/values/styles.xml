@@ -59,6 +59,7 @@
         <item name="android:layout_marginEnd">20dp</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/big_input_bg</item>
     </style>
 
     <style name="big_btn" parent="big_input">
@@ -66,6 +67,10 @@
         <item name="android:textColor">@color/btn_text_color</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:stateListAnimator">@animator/btn_animator</item>
+    </style>
+    
+    <style name="small_btn" parent="big_btn">
+        <item name="android:layout_width">80dp</item>
     </style>
 
 </resources>

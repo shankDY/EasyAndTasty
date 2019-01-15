@@ -20,4 +20,9 @@
     <string name="signin">Sign in</string>
     <string name="google_failed">Google sign in failed</string>
     <string name="facebook_failure">Facebook sign in failed</string>
+    <string name="send">Send</string>
+    <string name="instraction_forgot_pass">Чтобы сбросить пароль, введите адрес электронной почты, нажмите кнопку и
+        проверьте почту, следуя инструкциям
+    </string>
+    <string name="email_not_exist">Такой email не существует</string>
 </resources>

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import homeproject.example.com.myhomeproject.R
 import homeproject.example.com.myhomeproject.screens.btm_navigation_screens.MainActivity
 import homeproject.example.com.myhomeproject.screens.common.BaseFragment
+import kotlinx.android.synthetic.main.progressbar.*
 import kotlinx.android.synthetic.main.register_fragment.*
 
 
@@ -28,6 +29,7 @@ class RegisterFragment : BaseFragment(){
         mViewModel = initViewModel()
 
         regbutton.setOnClickListener{
+            login_progrssBar.visibility = View.VISIBLE
             mViewModel.onDataEntered(
                 fullname = full_name_input.text.toString(),
                 username = username_input.text.toString(),
@@ -38,6 +40,7 @@ class RegisterFragment : BaseFragment(){
 
         //переход на HomeActivity
         mViewModel.goToHomeScreen.observe(this, Observer {
+            login_progrssBar.visibility = View.GONE
             startActivity(Intent(activity, MainActivity::class.java))
             activity?.finish()
         })
