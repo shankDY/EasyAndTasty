@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyHomeProject</string>
+    <string name="app_name">Easy And Tasty</string>
     <string name="new_recipe">Новый рецепт</string>
     <string name="addPhoto">Добавить фотографию</string>
     <string name="recipe_name">Укажите название рецепта</string>
@@ -8,21 +8,40 @@
     <string name="addIngredients">Добавить ингредиент</string>
     <string name="instraction">Инструкция</string>
     <string name="hint_email">Email</string>
-    <string name="hint_pass">Password</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="full_name">Имя</string>
+    <string name="hint_pass">Пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="full_name">ФИО</string>
     <string name="register">Зарегистрироваться</string>
     <string name="email_exist">Данный email существует</string>
     <string name="please_enter_email">Пожалуйста введите email</string>
-    <string name="username">Username</string>
+    <string name="username">Имя пользователя</string>
     <string name="enter_fields">Заполните все поля</string>
     <string name="enter_email_and_password">Введите email и пароль</string>
-    <string name="signin">Sign in</string>
-    <string name="google_failed">Google sign in failed</string>
-    <string name="facebook_failure">Facebook sign in failed</string>
-    <string name="send">Send</string>
+    <string name="google_failed">Вход в систему с помощью google аккаунта не удался</string>
+    <string name="send">Отправить</string>
     <string name="instraction_forgot_pass">Чтобы сбросить пароль, введите адрес электронной почты, нажмите кнопку и
         проверьте почту, следуя инструкциям
     </string>
     <string name="email_not_exist">Такой email не существует</string>
+    <string name="login">Войти</string>
+    <string name="instraction_hint">Укажите пошагово каждый этап готовки вашего блюда</string>
+    <string name="coocking_time_text">Время приготовления</string>
+    <string name="publish">Опубликовать</string>
+
+    <string-array name="food_categories">
+        <item>Первые блюда</item>
+        <item>Вторые блюда</item>
+        <item>Закуски</item>
+        <item>Салаты</item>
+        <item>Соусы</item>
+        <item>Напитки</item>
+        <item>Десерты</item>
+        <item>Выпечка</item>
+    </string-array>
+
+    <string-array name="cooking_difficulty">
+        <item>Легко</item>
+        <item>Средне</item>
+        <item>Сложно</item>
+    </string-array>
 </resources>

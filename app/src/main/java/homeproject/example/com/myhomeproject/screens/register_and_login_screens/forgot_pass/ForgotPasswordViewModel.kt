@@ -17,7 +17,7 @@ class ForgotPasswordViewModel(private val commonViewModel: CommonViewModel,
 ) : BaseViewModel(onFailureListener) {
 
     private val _goToLoginScreen = SingleLiveEvent<Unit>()
-    //ссылка на переход на homeActivity
+    //ссылка на переход на LoginFragment
     val goToLoginScreen: LiveData<Unit> = _goToLoginScreen
 
     fun resetPass(email: String) {
@@ -26,9 +26,11 @@ class ForgotPasswordViewModel(private val commonViewModel: CommonViewModel,
             //проверка, что email существует
             usersRepo.isUserExistsForEmail(email).addOnSuccessListener {exist ->
                 //если email существует, то отправляем сообщение на почту с инструкцией для сброса пароля
+                // и даем добро на переход в Login Fragment
                 if (exist){
                     auth.sendPasswordResetEmail(email).addOnCompleteListener{
                         if (it.isSuccessful){
+                            //даем добро на переход в Login Fragment
                             _goToLoginScreen.call()
                         }else{
                             commonViewModel.setErrorMessage(app.getString(R.string.email_not_exist))

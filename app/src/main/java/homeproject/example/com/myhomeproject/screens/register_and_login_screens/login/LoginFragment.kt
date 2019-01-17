@@ -72,7 +72,6 @@ class LoginFragment : BaseFragment(){
 
     //данный метод вызывает веб форму регистрации гугл
     private fun signIn() {
-
         val signInIntent = googleSignInClient(context!!).signInIntent
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN)
     }

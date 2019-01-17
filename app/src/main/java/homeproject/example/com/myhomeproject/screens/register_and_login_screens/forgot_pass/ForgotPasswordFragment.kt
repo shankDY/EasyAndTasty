@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import homeproject.example.com.myhomeproject.R
 import homeproject.example.com.myhomeproject.screens.common.BaseFragment
+import homeproject.example.com.myhomeproject.screens.common.coordinateBtnAndInputs
 import homeproject.example.com.myhomeproject.screens.register_and_login_screens.login.LoginFragment
 import kotlinx.android.synthetic.main.forgot_password_fragment.*
 
@@ -26,11 +27,14 @@ class ForgotPasswordFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        //Инициализация NavController - а, для работы с navigation
        val navController = Navigation.findNavController(reset_btn)
 
         //инициализация mViewModel
         mViewModel = initViewModel()
 
+        //если поля заполнены кнопка активна
+        coordinateBtnAndInputs(reset_btn, email_input)
         //при клике на кнопку resetPass. вызываем соответсвующий метод
         reset_btn.setOnClickListener {
             mViewModel.resetPass(email_input.text.toString())

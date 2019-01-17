@@ -6,11 +6,9 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import homeproject.example.com.myhomeproject.R
-import homeproject.example.com.myhomeproject.data.firebase.common.auth
 import homeproject.example.com.myhomeproject.screens.common.BaseActivity
 import homeproject.example.com.myhomeproject.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.btm_view.*
-import kotlinx.android.synthetic.main.home_fragment.*
 
 
 class MainActivity : BaseActivity() {

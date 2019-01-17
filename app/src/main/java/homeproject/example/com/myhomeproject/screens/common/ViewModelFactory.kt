@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.google.android.gms.tasks.OnFailureListener
 import homeproject.example.com.myhomeproject.screens.App
+import homeproject.example.com.myhomeproject.screens.btm_navigation_screens.add_recipe.AddRecipeViewModel
 import homeproject.example.com.myhomeproject.screens.register_and_login_screens.forgot_pass.ForgotPasswordViewModel
 import homeproject.example.com.myhomeproject.screens.register_and_login_screens.login.LoginViewModel
 import homeproject.example.com.myhomeproject.screens.register_and_login_screens.register.RegisterViewModel
@@ -19,13 +20,16 @@ class ViewModelFactory(private val app: App,
 
         val usersRepo = app.usersRepo
         val authManager = app.authManager
+        val recipesRepo = app.resipesRepo
 
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
-            return LoginViewModel(authManager,app,commonViewModel,onFailureListener) as T
+            return LoginViewModel(authManager,app,commonViewModel,onFailureListener,usersRepo) as T
         }else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)){
             return RegisterViewModel(commonViewModel,app,onFailureListener,usersRepo) as T
         }else if (modelClass.isAssignableFrom(ForgotPasswordViewModel::class.java)){
             return ForgotPasswordViewModel(commonViewModel,app,onFailureListener,usersRepo) as T
+        }else if (modelClass.isAssignableFrom(AddRecipeViewModel::class.java)){
+            return AddRecipeViewModel(commonViewModel,app,onFailureListener,recipesRepo,usersRepo) as T
         }else{
             error("Unknow view model class $modelClass")
         }
