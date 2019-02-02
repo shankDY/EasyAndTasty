@@ -14,7 +14,7 @@
             android:title=""/>
     <item
             android:id="@+id/nav_item_shoping_list"
-            android:icon="@drawable/ic_favorite"
+            android:icon="@drawable/ic_shopping_list"
             android:title="" />
     <item
             android:id="@+id/nav_item_profile"

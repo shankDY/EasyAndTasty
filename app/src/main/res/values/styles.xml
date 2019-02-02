@@ -61,8 +61,8 @@
     </style>
 
     <style name="big_input">
-        <item name="android:layout_width"> match_parent</item>
-        <item name="android:layout_height"> wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:layout_marginEnd">20dp</item>
         <item name="android:layout_marginTop">20dp</item>
@@ -76,7 +76,7 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:stateListAnimator">@animator/btn_animator</item>
     </style>
-    
+
     <style name="small_btn" parent="big_btn">
         <item name="android:layout_width">105dp</item>
     </style>
@@ -92,6 +92,16 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:stateListAnimator">@animator/btn_animator</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="icon">
+        <item name="android:layout_width">@dimen/toolbar_height</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:padding">10dp</item>
     </style>
 
 </resources>

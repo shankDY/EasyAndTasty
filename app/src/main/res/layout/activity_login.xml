@@ -3,7 +3,7 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".screens.register_and_login_screens.HostLoginActivity"
+        tools:context="com.shank.eat.screens.register_and_login_screens.HostLoginActivity"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <fragment

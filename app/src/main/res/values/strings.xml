@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Easy And Tasty</string>
-    <string name="new_recipe">Новый рецепт</string>
     <string name="addPhoto">Добавить фотографию</string>
     <string name="recipe_name">Укажите название рецепта</string>
     <string name="ingredients">Ингредиенты</string>
@@ -24,10 +23,18 @@
     </string>
     <string name="email_not_exist">Такой email не существует</string>
     <string name="login">Войти</string>
+
+
+    <!-- РЕЦЕПТЫ -->
+
     <string name="instraction_hint">Укажите пошагово каждый этап готовки вашего блюда</string>
     <string name="coocking_time_text">Время приготовления</string>
     <string name="publish">Опубликовать</string>
+    <string name="gallery">ГАЛЕРЕЯ</string>
+    <string name="photo">ФОТО</string>
+    <string name="picture_switcher">Пожалуйста загружайте только свои фотографии</string>
 
+    <!-- массив категорий для блюд -->
     <string-array name="food_categories">
         <item>Первые блюда</item>
         <item>Вторые блюда</item>
@@ -39,9 +46,29 @@
         <item>Выпечка</item>
     </string-array>
 
+    <!-- массив сложности для блюд -->
     <string-array name="cooking_difficulty">
         <item>Легко</item>
         <item>Средне</item>
         <item>Сложно</item>
     </string-array>
+
+
+
+    <!-- бжу для  блюд -->
+    <string name="calories_add">Калории</string>
+    <string name="carbohydrates_add">Углеводы</string>
+    <string name="fat_add">Жиры</string>
+    <string name="protein_add">Белок</string>
+    <string name="add_a_comment">Добавить комментарий</string>
+    <string name="comments">Комментарии</string>
+    <string name="add_comments">Пожалуйста укажите комментарий</string>
+
+
+    <!-- для соглосования окончаний с разным количеством
+    %d означает, что можно поставить числовое значение-->
+    <plurals name="likes_count">
+        <item quantity="one">%d like</item>
+        <item quantity="other">%d likes</item>
+    </plurals>
 </resources>

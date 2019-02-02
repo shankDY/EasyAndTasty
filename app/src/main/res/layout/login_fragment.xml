@@ -80,7 +80,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/forgot_password_text">
 
-                <homeproject.example.com.myhomeproject.screens.common.CustomImageButton
+                <com.shank.eat.screens.common.CustomImageButton
                         android:id="@+id/buttonGoogleLogin"
                         android:padding="10dp"
                         android:layout_width="60dp"
@@ -89,7 +89,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_google"/>
 
-                <homeproject.example.com.myhomeproject.screens.common.CustomImageButton
+                <com.shank.eat.screens.common.CustomImageButton
                         android:id="@+id/buttonEmailLogin"
                         android:padding="10dp"
                         android:layout_width="60dp"

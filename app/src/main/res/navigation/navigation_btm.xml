@@ -5,27 +5,57 @@
             app:startDestination="@+id/nav_item_home">
 
     <fragment android:id="@+id/nav_item_home"
-              android:name="homeproject.example.com.myhomeproject.screens.btm_navigation_screens.home.HomeFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.home.HomeFragment"
               android:label="HomeFragment"
-              tools:layout="@layout/home_fragment"/>
+              tools:layout="@layout/home_fragment">
+        <action android:id="@+id/action_nav_item_home_to_recipeFragment"
+                app:destination="@id/recipeFragment"/>
+
+        <action android:id="@+id/action_nav_item_home_to_commentsFragment"
+                app:destination="@id/commentsFragment"/>
+    </fragment>
 
     <fragment android:id="@+id/nav_item_search"
-              android:name="homeproject.example.com.myhomeproject.screens.btm_navigation_screens.search.SearchFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.search.SearchFragment"
               android:label="SearchFragment"
               tools:layout="@layout/search_fragment"/>
 
     <fragment android:id="@+id/nav_item_add_recipe"
-              android:name="homeproject.example.com.myhomeproject.screens.btm_navigation_screens.add_recipe.AddRecipeFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.add_recipe.AddRecipeFragment"
               android:label="AddRecipeFragment"
-              tools:layout="@layout/add_recipe_fragment"/>
+              tools:layout="@layout/add_recipe_fragment">
+    </fragment>
+
 
     <fragment android:id="@+id/nav_item_shoping_list"
-              android:name="homeproject.example.com.myhomeproject.screens.btm_navigation_screens.shoping_list.ShopingListFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.shoping_list.ShopingListFragment"
               android:label="ShopingListFragment"
               tools:layout="@layout/shoping_list_fragment"/>
 
     <fragment android:id="@+id/nav_item_profile"
-              android:name="homeproject.example.com.myhomeproject.screens.btm_navigation_screens.profile.ProfileFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.profile.ProfileFragment"
               android:label="ProfileFragment"
               tools:layout="@layout/profile_fragment"/>
+
+    <fragment android:id="@+id/recipeFragment"
+              android:name="com.shank.eat.screens.recipes.RecipeFragment"
+              android:label="recipe_fragment"
+              tools:layout="@layout/recipe_fragment">
+
+        <argument
+                android:name="recipeId"
+                app:argType="string"/>
+    </fragment>
+
+    <fragment android:id="@+id/commentsFragment"
+              android:name="com.shank.eat.screens.comments.CommentsFragment"
+              android:label="comments_fragment"
+              tools:layout="@layout/comments_fragment">
+
+        <argument
+                android:name="recipeId"
+                app:argType="string"/>
+    </fragment>
+
+
 </navigation>

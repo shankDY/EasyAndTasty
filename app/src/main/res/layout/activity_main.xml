@@ -2,11 +2,8 @@
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".screens.btm_navigation_screens.MainActivity">
+        android:layout_height="match_parent">
 
     <fragment
             android:id="@+id/btm_nav_host_fragment"
@@ -14,12 +11,24 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/navigation_btm" />
+            app:navGraph="@navigation/navigation_btm"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"/>
 
-    <include layout="@layout/btm_view" />
+    <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/whitish"
+            app:labelVisibilityMode="unlabeled"
+            app:itemIconSize="29dp"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconTint="@drawable/my_selector_btm"
+            app:menu="@menu/btn_navigation_menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
