@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Typeface
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SimpleItemAnimator
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
@@ -39,13 +41,6 @@ fun coordinateBtnAndInputs(btn: Button, vararg inputs: EditText) {
 
 
 
-//фукция расширения для EditText, которая вернет null(в бд будет пустая строка),
-// если необязательные  поля пустые
-fun Editable.toStringOrNull(): String?{
-    val str = toString()
-    return if (str .isEmpty()) null else str
-}
-
 //данная функция екстеншен(Расширение) класса Context. А классы Context наследуют все Активити
 //данная функция позволяет нам показывать тосты
 fun Context.showToast(text:String?, duration: Int = Toast.LENGTH_SHORT ){
@@ -55,7 +50,11 @@ fun Context.showToast(text:String?, duration: Int = Toast.LENGTH_SHORT ){
 
 //загружаем в imagView нашу картинку. и кропаем ее по центру
 fun ImageView.loadImage(image: String?) =
-        GlideApp.with(this).load(image).centerCrop().fallback(R.drawable.image_placeholder).into(this)
+        GlideApp.with(this)
+            .load(image)
+            .thumbnail( 0.1f )
+            .centerCrop()
+            .fallback(R.drawable.image_placeholder).into(this)
 
 
 
@@ -64,19 +63,11 @@ fun ImageView.loadImage(image: String?) =
 fun ImageView.loadUserPhoto(photoUrl: String?) =
 //fallback - картинка, которая показывается, когда у юзера отсутсвует фото в профиле
 //если активити уничтожена, то не будем вызывать нащ glideApp. и не будем вставлять картинку
-        GlideApp.with(this).load(photoUrl).fallback(R.drawable.person).into(this)
-
-
-
-fun hideBottomNavigationView(view: BottomNavigationView, switcher: Boolean = true) {
-    view.clearAnimation()
-    if (!switcher){
-        view.animate().translationY(0f).duration = 300
-
-    }else{
-        view.animate().translationY(view.height.toFloat()).duration = 300
-    }
-}
+        GlideApp.with(this)
+            .load(photoUrl)
+            .thumbnail(0.1f)
+            .fallback(R.drawable.person)
+            .into(this)
 
 
 
@@ -138,3 +129,12 @@ fun TextView.setCaptionText(username: String, caption: String, date: Date? = nul
 }
 
 
+
+//отключает мерцание В recyclerView картинок при загрузке через glide
+fun recyclerAnimatorOff(feed_recycler: RecyclerView?) {
+
+    val animator = feed_recycler?.itemAnimator
+    if (animator is SimpleItemAnimator) {
+        animator.supportsChangeAnimations = false
+    }
+}

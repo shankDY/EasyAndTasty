@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.User
 import com.shank.eat.screens.common.BaseFragment
@@ -48,6 +49,8 @@ class AddRecipeFragment : BaseFragment() {
         //инициализация mViewModel
         mViewModel = initViewModel()
 
+
+
         //первоначально, если imageView пустой, то загружаем дефолтную картинку
         if (recipe_image.drawable == null){
 
@@ -56,6 +59,10 @@ class AddRecipeFragment : BaseFragment() {
 
         //инициализируем наш PictureHelper
         mPicture = PictureHelper(this)
+
+        back_img_recipe.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
 

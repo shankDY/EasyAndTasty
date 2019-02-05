@@ -17,6 +17,7 @@ import com.shank.eat.data.firebase.common.FirebaseLiveData
 import com.shank.eat.data.firebase.common.database
 import com.shank.eat.model.Comment
 import com.shank.eat.model.Recipe
+import com.shank.eat.model.ShopingList
 import com.shank.eat.screens.common.loadImage
 
 class FirebaseRecipesRepository : RecipesRepository {
@@ -29,10 +30,16 @@ class FirebaseRecipesRepository : RecipesRepository {
     }
 
 
-    //получаем Feedposts юзера
+    //получаем рецепты юзеров
     override fun getFeedPosts(uid: String): LiveData<List<Recipe>> =
         FirebaseLiveData(database.child("users-recipes").child(uid)).map{
             it.children.map { it.asRecipe()!! }
+        }
+
+    //получаем  1 Рецепт юзера
+    override fun getFeedPost(uid: String, postId: String): LiveData<Recipe> =
+        FirebaseLiveData(database.child("users-recipes").child(uid).child(postId)).map{
+            it.asRecipe()!!
         }
 
 
@@ -114,10 +121,34 @@ class FirebaseRecipesRepository : RecipesRepository {
     private fun DataSnapshot.asRecipe(): Recipe? =
         getValue(Recipe::class.java)?.copy(id = key!!)
 
-    // // функция расширения, с помощью которой получаем замапенный список комментов,
+    // функция расширения, с помощью которой получаем замапенный список комментов,
     // где id комента - ключ
     fun DataSnapshot.asComment(): Comment? =
         getValue(Comment::class.java)?.copy(id = key!!)
 
+
+
+    //создаем список покупок
+    override fun createShopingList(uid: String, shopingList:ShopingList): Task<Unit> =
+            database.child("shopingLists").child(uid).push().setValue(shopingList).toUnit()
+
+
+    //получаем список всех покупок юзера
+    override fun getShopingLists(uid: String): LiveData<List<ShopingList?>> =
+            FirebaseLiveData(database.child("shopingLists").child(uid)).map {
+                it.children.map { it.asShopingList() }
+            }
+
+    //получаем конкретный список юзера
+    override fun getShopingList(uid:String, idShopingList:String) =
+            FirebaseLiveData(database.child("shopingLists").child(uid).child(idShopingList)).map {
+                it.asShopingList()
+            }
+
+
+    // функция расширения, с помощью которой получаем замапенный список комментов,
+    // где id списка - ключ полученный из бд.
+    fun DataSnapshot.asShopingList(): ShopingList? =
+            getValue(ShopingList::class.java)?.copy(id = key!!)
 
 }

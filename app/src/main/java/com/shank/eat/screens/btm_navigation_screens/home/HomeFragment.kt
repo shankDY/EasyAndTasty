@@ -7,10 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import com.shank.eat.R
 import com.shank.eat.data.firebase.common.auth
 import com.shank.eat.screens.common.BaseFragment
+import com.shank.eat.screens.common.recyclerAnimatorOff
 import kotlinx.android.synthetic.main.home_fragment.*
 
 
@@ -31,10 +31,20 @@ class HomeFragment : BaseFragment(), FeedAdapter.Listener{
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         mViewModel = initViewModel()
+
 
         mAdapter = FeedAdapter(this)
         feed_recycler.adapter = mAdapter
+
+
+        //отключаем анимацию отрисовки картинки
+
+        recyclerAnimatorOff(feed_recycler)
+
+
+
         feed_recycler.layoutManager = LinearLayoutManager(context)
 
         mViewModel.feedPosts.observe(this, Observer{ it ->
@@ -43,15 +53,13 @@ class HomeFragment : BaseFragment(), FeedAdapter.Listener{
         })
 
 
-
-
-
         img.setOnClickListener {
             auth.signOut()
         }
 
 
     }
+
 
     //подгружаем лайкосики
     override fun loadLikes(postId: String, position: Int){

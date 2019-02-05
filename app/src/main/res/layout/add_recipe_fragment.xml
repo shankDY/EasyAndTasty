@@ -36,6 +36,13 @@
                 <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+                    <com.shank.eat.screens.common.CustomImageButton
+                            android:id="@+id/back_img_recipe"
+                            style="@style/icon"
+                            android:src="@drawable/ic_back"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
                             android:id="@+id/publish_btn"
@@ -44,7 +51,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/publish"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -209,10 +217,18 @@
                     style="@style/FullWidthEditText"
                     android:layout_marginTop="10dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:hint="@string/instraction_hint"
                     app:layout_constraintTop_toBottomOf="@id/instraction_label"
+                    app:layout_constraintBottom_toTopOf="@+id/space"
                     android:importantForAutofill="no"/>
+
+            <Space android:id="@+id/space"
+                   android:layout_width="match_parent"
+                   android:layout_height="20dp"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 

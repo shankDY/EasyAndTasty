@@ -3,15 +3,16 @@ package com.shank.eat.screens.btm_navigation_screens.home
 import android.arch.lifecycle.LiveData
 import com.google.android.gms.tasks.OnFailureListener
 import com.shank.eat.data.RecipesRepository
+import com.shank.eat.data.UsersRepository
 import com.shank.eat.data.common.map
-import com.shank.eat.data.firebase.common.currentUid
 import com.shank.eat.model.Recipe
 import com.shank.eat.screens.common.BaseViewModel
 
 class HomeViewModel(onFailureListener: OnFailureListener,
-                    private val recipesRepo: RecipesRepository) : BaseViewModel(onFailureListener) {
+                    private val recipesRepo: RecipesRepository,
+                    usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
 
-    private var  uid = currentUid()
+    private var  uid = usersRepo.currentUid()
     var feedPosts: LiveData<List<Recipe>>
 
     //карта лайков, где ключ uid , value - лайки
@@ -50,7 +51,7 @@ class HomeViewModel(onFailureListener: OnFailureListener,
                     likedByUser = likes.find { it.userId == uid } != null)
             }
             //заполняем нашу карту
-            loadedLikes += postId to liveData
+            loadedLikes = loadedLikes + (postId to liveData)
             return liveData
         }else{
 

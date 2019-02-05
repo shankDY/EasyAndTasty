@@ -1,4 +1,4 @@
-package com.shank.eat.screens.comments
+package com.shank.eat.screens.btm_navigation_screens.home.comments
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.shank.eat.model.User
 import com.shank.eat.screens.btm_navigation_screens.home.HomeFragment
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.loadUserPhoto
+import com.shank.eat.screens.common.recyclerAnimatorOff
 import kotlinx.android.synthetic.main.comments_fragment.*
 
 class CommentsFragment : BaseFragment() {
@@ -54,6 +55,7 @@ class CommentsFragment : BaseFragment() {
         //инициализация адаптера
         comments_recycler.layoutManager = LinearLayoutManager(getBaseActivity())
         mAdapter = CommentsAdapter()
+        recyclerAnimatorOff(comments_recycler)
         comments_recycler.adapter = mAdapter
 
 

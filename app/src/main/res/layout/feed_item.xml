@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="@id/user_photo_image"
                 app:layout_constraintBottom_toBottomOf="@id/user_photo_image"/>
 
-        <ImageView
+        <com.shank.eat.screens.common.CustomImageButton
                 android:id="@+id/more_image"
                 style="@style/icon"
                 android:src="@drawable/ic_more"
@@ -49,44 +49,62 @@
         <ImageView
                 android:id="@+id/post_image"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="200dp"
                 android:clickable="true"
                 android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/user_photo_image"
                 app:layout_constraintBottom_toTopOf="@id/like_image"/>
 
-        <ImageView
+        <TextView android:id="@+id/name_recipe"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/white"
+                  android:textStyle="bold"
+                  android:textAllCaps="true"
+                  android:textSize="35sp"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  android:shadowColor="@color/black"
+                  android:shadowDx="1.5"
+                  android:shadowDy="1.3"
+                  android:shadowRadius="1.6"/>
+
+        <com.shank.eat.screens.common.CustomImageButton
                 android:id="@+id/like_image"
                 app:layout_constraintTop_toBottomOf="@id/post_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/likes_text"
-                android:layout_height="45dp"
-                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
                 android:padding="10dp"
                 android:clickable="true"
                 android:src="@drawable/ic_like"/>
 
-        <ImageView
+        <com.shank.eat.screens.common.CustomImageButton
                 android:id="@+id/comment_image"
                 app:layout_constraintStart_toEndOf="@id/like_image"
                 app:layout_constraintTop_toTopOf="@id/like_image"
                 app:layout_constraintBottom_toBottomOf="@id/like_image"
-                android:layout_height="45dp"
-                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
                 android:padding="10dp"
                 android:clickable="true"
                 android:src="@drawable/ic_comments_border"/>
 
-        <ImageView
+        <com.shank.eat.screens.common.CustomImageButton
                 android:id="@+id/share_image"
                 app:layout_constraintStart_toEndOf="@id/comment_image"
                 app:layout_constraintTop_toTopOf="@id/like_image"
                 app:layout_constraintBottom_toBottomOf="@id/like_image"
-                android:layout_height="45dp"
-                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
                 android:padding="10dp"
                 android:clickable="true"
-                android:src="@drawable/ic_share_border"/>
+                android:src="@drawable/ic_share"/>
 
         <TextView
                 android:id="@+id/likes_text"
@@ -102,10 +120,11 @@
 
         <TextView
                 android:id="@+id/caption_text"
+                tools:text="I am sexy man"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:layout_marginStart="10dp"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/likes_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

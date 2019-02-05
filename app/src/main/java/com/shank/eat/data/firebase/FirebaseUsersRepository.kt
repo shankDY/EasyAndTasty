@@ -47,6 +47,9 @@ class FirebaseUsersRepository : UsersRepository {
     override fun getUser(uid: String): LiveData<User> =
         database.child("users").child(uid).liveData().map { it.asUser()!! }
 
+    //ссылка на авторизованного юзера
+    override fun currentUid() = auth.currentUser?.uid
+
 
 
     // функция расширения, с помощью которой получаем замапенный список юзеров, где uid -ключ(uid юзера из User,

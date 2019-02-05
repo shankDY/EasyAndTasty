@@ -3,6 +3,7 @@ package com.shank.eat.screens.common
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.shank.eat.screens.register_and_login_screens.HostLoginActivity
 
@@ -18,6 +19,16 @@ abstract class BaseActivity: AppCompatActivity() {
 
     }
 
+
+    fun hideBottomNavigationView(view: BottomNavigationView, switcher: Boolean = true) {
+        view.clearAnimation()
+        if (!switcher){
+            view.animate().translationY(0f).duration = 300
+
+        }else{
+            view.animate().translationY(view.height.toFloat()).duration = 300
+        }
+    }
 
 
     //переход в логинАктивити

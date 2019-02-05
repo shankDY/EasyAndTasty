@@ -54,9 +54,10 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
         //обращаемся к viewHolder напрямую. Вызывает указанный функциональный блок с данным
         // приемником в качестве приемника и возвращает его результат.
         with(holder.view){
-            user_photo_image.loadUserPhoto(posts[position].userPhoto)
-            username_text.text = posts[position].username
-            post_image.loadImage(posts[position].recipeImg)
+            user_photo_image.loadUserPhoto(post.userPhoto)
+            username_text.text = post.username
+            post_image.loadImage(post.recipeImg)
+            name_recipe.text = post.nameRecipe
 
             val bundle = Bundle()
             bundle.putString("postId", post.id)
@@ -69,7 +70,7 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
             //если лайков не, то прячим текст
 
             if (likes.likesCount == 0) {
-                likes_text.visibility = View.GONE
+                likes_text.visibility = View.INVISIBLE
             }else{
                 likes_text.visibility = View.VISIBLE
                 //для соглосовывания окончаний при разном количестве(1 like, 2 likes)
@@ -82,9 +83,9 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
 
             //лайкаем посты
             like_image.setOnClickListener{listener.toogleLike(post.id)}
-            //если лайкнули , то ставим черное сердечко, если нет прозрачное
+            //если лайкнули , то ставим красное сердечко, если нет прозрачное
             like_image.setImageResource(
-                if(likes.likedByUser) R.drawable.ic_favorite
+                if(likes.likedByUser) R.drawable.ic_likes_active
                 else R.drawable.ic_like)
 
             listener.loadLikes(post.id, position)

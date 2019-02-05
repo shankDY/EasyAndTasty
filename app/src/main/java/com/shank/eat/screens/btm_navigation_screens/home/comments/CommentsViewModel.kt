@@ -1,4 +1,4 @@
-package com.shank.eat.screens.comments
+package com.shank.eat.screens.btm_navigation_screens.home.comments
 
 import android.arch.lifecycle.LiveData
 import com.google.android.gms.tasks.OnFailureListener

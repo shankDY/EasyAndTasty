@@ -21,4 +21,6 @@ interface UsersRepository {
 
     //загружаем фотку в хранилище и получаем публичный uri
     fun uploadUserImage(uid: String, imageUri: Uri): Task<Uri>
+
+    fun currentUid(): String?
 }

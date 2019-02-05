@@ -19,13 +19,11 @@ val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 //ссылка на хранилище. Данный класс поможет нам работать с хранилищем
 val storage: StorageReference = FirebaseStorage.getInstance().reference
 
-//получаем нашего зареганного юзера
-fun currentUid(): String? = auth.currentUser?.uid
 
 //возвращает нам liveDATA
 fun DatabaseReference.liveData(): LiveData<DataSnapshot> = FirebaseLiveData(this)
 
-//        // Configure Google Sign In
+// Configure Google Sign In
 val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
     .requestIdToken("847404471501-9o80te7fpo8uttrdcat5di5ib5m31k10.apps.googleusercontent.com")
     .requestEmail()

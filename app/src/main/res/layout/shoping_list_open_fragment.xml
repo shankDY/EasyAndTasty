@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
         android:background="@color/white"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -17,9 +18,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+            <com.shank.eat.screens.common.CustomImageButton
+                    android:id="@+id/back_img"
+                    style="@style/icon"
+                    android:src="@drawable/ic_back_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
+                    android:id="@+id/recipe_name"
                     style="@style/toolbar_title"
-                    android:text="@string/shoping_list"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/back_img"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -30,10 +39,10 @@
 
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/shoping_list_recycler"
+            android:id="@+id/ingredients_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            tools:listitem="@layout/shopping_list_item"
+            tools:listitem="@layout/ingredients_recipe_item"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -63,12 +63,13 @@
     <string name="add_a_comment">Добавить комментарий</string>
     <string name="comments">Комментарии</string>
     <string name="add_comments">Пожалуйста укажите комментарий</string>
+    <string name="shoping_list">Список покупок</string>
 
 
     <!-- для соглосования окончаний с разным количеством
     %d означает, что можно поставить числовое значение-->
     <plurals name="likes_count">
-        <item quantity="one">%d like</item>
-        <item quantity="other">%d likes</item>
+        <item quantity="one">%d Лайк</item>
+        <item quantity="other">%d Лайков</item>
     </plurals>
 </resources>
