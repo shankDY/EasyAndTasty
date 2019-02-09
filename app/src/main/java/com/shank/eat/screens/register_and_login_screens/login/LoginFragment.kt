@@ -72,7 +72,7 @@ class LoginFragment : BaseFragment(){
 
 
         //при успешной авторизации переходим в MainActivity, с которой разворачиваем HomeFragment
-        mViewModel.goToHomeScreen.observe(this, Observer {
+        mViewModel.goToHomeScreen.observe(viewLifecycleOwnerLiveData.value!!, Observer {
             startActivity(Intent(activity, MainActivity::class.java))
             activity?.finish()
         })

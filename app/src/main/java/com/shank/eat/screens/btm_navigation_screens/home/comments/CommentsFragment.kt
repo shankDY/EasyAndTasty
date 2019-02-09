@@ -44,7 +44,7 @@ class CommentsFragment : BaseFragment() {
 
 
         //получаем зареганного в данный момент юзер и загружаем ее фотку
-        viewModel.user.observe(this, Observer{
+        viewModel.user.observe(viewLifecycleOwnerLiveData.value!!, Observer{
             it?.let {
                 mUser = it
                 //подгружаем фотку юзера в imagView, перед вводом коммента
@@ -59,9 +59,8 @@ class CommentsFragment : BaseFragment() {
         comments_recycler.adapter = mAdapter
 
 
-        //слушаем комментарии, если есть новые , то жобавляем их recicler view
-        viewModel.comments.observe(this, Observer {
-            it.let {
+        //слушаем комментарии, если есть новые , то добавляем их recicler view
+        viewModel.comments.observe( viewLifecycleOwnerLiveData.value!!, Observer { it.let {
                 mAdapter.updateComments(it!!)
             }
         })

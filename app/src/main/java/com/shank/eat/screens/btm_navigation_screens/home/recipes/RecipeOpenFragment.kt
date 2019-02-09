@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.screens.btm_navigation_screens.add_recipe.AddRecipeFragment
 import com.shank.eat.screens.common.BaseFragment
+import com.shank.eat.screens.common.loadImage
 import com.shank.eat.screens.common.loadUserPhoto
 import kotlinx.android.synthetic.main.recipe_fragment.*
 
@@ -46,11 +47,9 @@ class RecipeOpenFragment : BaseFragment() {
 
 
         //как только получаем рецепт с бд. то проставляем данные в поля
-        mOpenViewModel.recipe.observe(this, Observer {
+        mOpenViewModel.recipe.observe(viewLifecycleOwnerLiveData.value!!, Observer { it.let {recipe ->
 
-            it.let {recipe ->
-
-                recipe_image.loadUserPhoto(recipe?.recipeImg)
+                recipe_image.loadImage(recipe?.recipeImg)
                 name_recipe_text.text = recipe?.nameRecipe
                 categories_text.text = recipe?.calories
                 recipe_difficulty_text.text = recipe?.difficulty

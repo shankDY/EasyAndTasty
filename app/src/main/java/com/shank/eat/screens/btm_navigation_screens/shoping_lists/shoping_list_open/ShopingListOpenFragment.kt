@@ -38,9 +38,7 @@ class ShopingListOpenFragment : BaseFragment() {
         mViewModel.init(shopingListID.toString())
 
 
-        mViewModel.shopingList.observe(this, Observer {
-
-            it.let {shopingList ->
+        mViewModel.shopingList.observe(viewLifecycleOwnerLiveData.value!!, Observer { it.let {shopingList ->
 
                 //устанавливаем имя рецепта в текствью в тулбаре
                 recipe_name.text = shopingList?.recipeName

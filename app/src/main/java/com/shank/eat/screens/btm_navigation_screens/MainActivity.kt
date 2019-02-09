@@ -26,11 +26,7 @@ class MainActivity : BaseActivity() {
 
             //подключение navigation bottom
             bottom_navigation_view.setupWithNavController(
-                Navigation.findNavController(
-                    this,
-                    R.id.btm_nav_host_fragment
-                )
-            )
+                Navigation.findNavController(this, R.id.btm_nav_host_fragment))
 
             findNavController(R.id.btm_nav_host_fragment).addOnDestinationChangedListener {
                     _, destination, _ ->

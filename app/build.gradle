@@ -61,8 +61,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     //Navigation components
-    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha11"
-    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-alpha11"
+    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-beta01"
+    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-beta01"
 
     //дополнительная либа, асинк, постороение разметки без xml
     implementation "org.jetbrains.anko:anko-commons:0.10.8"

@@ -50,7 +50,7 @@ abstract class BaseFragment : Fragment() {
 
 
         //обработчик ошибок( если ошибка появляется, то показываем тост)
-        commonViewModel.errorMessage.observe(this, Observer{it?.let{
+        commonViewModel.errorMessage.observe(viewLifecycleOwnerLiveData.value!!, Observer{it?.let{
             context?.showToast(it)
         }})
     }

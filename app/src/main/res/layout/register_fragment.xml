@@ -30,22 +30,21 @@
                 android:layout_height="wrap_content">
 
             <EditText
-                    android:id="@+id/full_name_input"
-                    style="@style/big_input"
-                    android:inputType="textPersonName"
-                    android:hint="@string/full_name"/>
-            <EditText
                     android:id="@+id/username_input"
                     style="@style/big_input"
                     android:inputType="textPersonName"
                     android:hint="@string/username"
-                    app:layout_constraintTop_toBottomOf="@id/full_name_input"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             <EditText
                     android:id="@+id/email_input_reg"
                     style="@style/big_input"
                     android:hint="@string/hint_email"
                     android:inputType="textEmailAddress"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/username_input"/>
 
             <EditText
@@ -53,12 +52,16 @@
                     style="@style/big_input"
                     android:inputType="textPassword"
                     android:hint="@string/hint_pass"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/email_input_reg"/>
 
             <Button
                     android:id="@+id/regbutton"
                     style="@style/big_btn"
                     android:text="@string/register"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/password_input"/>
 
         </android.support.constraint.ConstraintLayout>

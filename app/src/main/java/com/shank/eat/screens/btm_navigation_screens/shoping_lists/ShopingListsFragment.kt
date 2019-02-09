@@ -35,8 +35,7 @@ class ShopingListsFragment : BaseFragment() {
 
         shoping_list_recycler.layoutManager = LinearLayoutManager(context)
 
-        mViewModel.shopingLists.observe(this, Observer{ it ->
-            it?.let{
+        mViewModel.shopingLists.observe(viewLifecycleOwnerLiveData.value!!, Observer{ it?.let{
                 mAdapter.updatePosts(it) }
         })
 

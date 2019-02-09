@@ -41,7 +41,7 @@ class ForgotPasswordFragment : BaseFragment() {
         }
 
         //при успешной авторизации переходим в MainActivity, с которой разворачиваем HomeFragment
-        mViewModel.goToLoginScreen.observe(this, Observer {
+        mViewModel.goToLoginScreen.observe(viewLifecycleOwnerLiveData.value!!, Observer {
             navController.popBackStack()
         })
 

@@ -32,7 +32,7 @@ class RegisterFragment : BaseFragment(){
         mViewModel = initViewModel()
 
         //если поля заполнены кнопка активна
-        coordinateBtnAndInputs(regbutton, full_name_input, username_input, email_input_reg, password_input)
+        coordinateBtnAndInputs(regbutton, username_input, email_input_reg, password_input)
 
         regbutton.setOnClickListener{
             //вкл видимость прогрес бара
@@ -40,7 +40,6 @@ class RegisterFragment : BaseFragment(){
 
             //отправляем введенные данные во viewModel для обработки
             mViewModel.onDataEntered(
-                fullname = full_name_input.text.toString(),
                 username = username_input.text.toString(),
                 email = email_input_reg.text.toString(),
                 password = password_input.text.toString()
@@ -48,7 +47,7 @@ class RegisterFragment : BaseFragment(){
         }
 
         //переход на HomeActivity
-        mViewModel.goToHomeScreen.observe(this, Observer {
+        mViewModel.goToHomeScreen.observe(viewLifecycleOwnerLiveData.value!!, Observer {
             progressBar.visibility = View.GONE
             startActivity(Intent(activity, MainActivity::class.java))
             activity?.finish()

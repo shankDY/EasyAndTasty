@@ -52,7 +52,6 @@ fun Context.showToast(text:String?, duration: Int = Toast.LENGTH_SHORT ){
 fun ImageView.loadImage(image: String?) =
         GlideApp.with(this)
             .load(image)
-            .thumbnail( 0.1f )
             .centerCrop()
             .fallback(R.drawable.image_placeholder).into(this)
 
@@ -65,13 +64,12 @@ fun ImageView.loadUserPhoto(photoUrl: String?) =
 //если активити уничтожена, то не будем вызывать нащ glideApp. и не будем вставлять картинку
         GlideApp.with(this)
             .load(photoUrl)
-            .thumbnail(0.1f)
             .fallback(R.drawable.person)
             .into(this)
 
 
 
-//aniation fragment Transactions
+//animation fragment Transactions
 fun options(): NavOptions? = NavOptions.Builder()
     //данные анимации срабатываю при клике на кнопки(программные)
     .setEnterAnim(R.animator.slide_in_right)

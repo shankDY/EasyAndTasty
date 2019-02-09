@@ -65,14 +65,12 @@ class FirebaseUsersRepository : UsersRepository {
         //upload image to user folder <- storage
         //lastPathSegment - имя файла
         val usersStorageReference = storage.child("users")
-            .child(uid).child("images").child(imageUri.lastPathSegment)
+            .child(uid).child("images").child(imageUri.lastPathSegment!!)
 
         //загржуаем фотку по нужному адрессу и берем публичный url для нашей фотки,
         // чтобы запостить ее
-        return usersStorageReference.putFile(imageUri).onSuccessTask { it ->
-            usersStorageReference.downloadUrl.addOnSuccessListener {
-                Tasks.forResult(it)
-            }
+        return usersStorageReference.putFile(imageUri).onSuccessTask { usersStorageReference.downloadUrl
+            .addOnSuccessListener { Tasks.forResult(it) }
         }
     }
 }

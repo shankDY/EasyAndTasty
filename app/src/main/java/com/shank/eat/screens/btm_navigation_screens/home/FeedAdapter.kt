@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.Recipe
 import com.shank.eat.screens.common.SimpleCallback
 import com.shank.eat.screens.common.loadImage
 import com.shank.eat.screens.common.loadUserPhoto
+import com.shank.eat.screens.common.options
 import kotlinx.android.synthetic.main.feed_item.view.*
 
 //адаптер для постов
@@ -64,7 +66,7 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
 
             //переходим в recipe fragment
             post_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_home_to_recipeFragment,bundle)
+                findNavController().navigate(R.id.action_nav_item_home_to_recipeFragment,bundle,options())
             }
 
             //если лайков не, то прячим текст
@@ -82,7 +84,9 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
             }
 
             //лайкаем посты
-            like_image.setOnClickListener{listener.toogleLike(post.id)}
+            like_image.setOnClickListener{
+                listener.toogleLike(post.id)
+            }
             //если лайкнули , то ставим красное сердечко, если нет прозрачное
             like_image.setImageResource(
                 if(likes.likedByUser) R.drawable.ic_likes_active
@@ -90,9 +94,18 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
 
             listener.loadLikes(post.id, position)
 
+            val options = NavOptions.Builder()
+                //данные анимации срабатываю при клике на кнопки(программные)
+                .setEnterAnim(R.animator.slide_down)
+                .setExitAnim(R.animator.slide_up)
+                //данные анимации срабатывают при выталкивании фрагмента из стека(по клику на кнопку назад(системную))
+                .setPopExitAnim(R.animator.slide_up)
+
+                .build()
+
             //переходим в comments fragment
             comment_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_home_to_commentsFragment, bundle)
+                findNavController().navigate(R.id.action_nav_item_home_to_commentsFragment, bundle,options)
             }
 
         }

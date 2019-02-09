@@ -73,13 +73,12 @@ class AddRecipeFragment : BaseFragment() {
         floatImg.setOnClickListener {
             //запрашиваем права
             getPermissions()
-            //делаем фотку
-            mPicture.takeCameraPicture()
+
         }
 
 
         //получаем авторизованного в данный момент пользователя
-        mViewModel.user.observe(this, android.arch.lifecycle.Observer {
+        mViewModel.user.observe(viewLifecycleOwnerLiveData.value!!, android.arch.lifecycle.Observer {
                 it?.let{
                 mUser = it
             }
@@ -132,7 +131,7 @@ class AddRecipeFragment : BaseFragment() {
 
 
         //слушаем колбек. Если все успешно было добавленно в бд, то отчищаем наши EditText и соответствующие им списки
-        mViewModel.clearEdditText.observe(this, Observer {
+        mViewModel.clearEdditText.observe(viewLifecycleOwner, Observer {
             mPicture.fileDell()
             mViewModel.clearEdittext(ingredientsViewList, ingredients, linear_ingredients,recipe_image,name_recipe_input,
                 ingredients1_input, ingredients2_input, ingredients3_input, coocking_time_text, instruction_input,
@@ -185,6 +184,7 @@ class AddRecipeFragment : BaseFragment() {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED) {
 
+
             // Permission is not granted
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(getBaseActivity(),
@@ -204,6 +204,7 @@ class AddRecipeFragment : BaseFragment() {
             }
         } else {
             // Permission has already been granted
+
         }
 
     }

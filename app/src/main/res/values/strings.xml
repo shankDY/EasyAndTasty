@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Easy And Tasty</string>
-    <string name="addPhoto">Добавить фотографию</string>
     <string name="recipe_name">Укажите название рецепта</string>
     <string name="ingredients">Ингредиенты</string>
     <string name="enter_ingredients">Укажите ингредиент и количество</string>
@@ -9,7 +8,6 @@
     <string name="hint_email">Email</string>
     <string name="hint_pass">Пароль</string>
     <string name="forgot_password">Забыли пароль?</string>
-    <string name="full_name">ФИО</string>
     <string name="register">Зарегистрироваться</string>
     <string name="email_exist">Данный email существует</string>
     <string name="please_enter_email">Пожалуйста введите email</string>
@@ -63,7 +61,13 @@
     <string name="add_a_comment">Добавить комментарий</string>
     <string name="comments">Комментарии</string>
     <string name="add_comments">Пожалуйста укажите комментарий</string>
-    <string name="shoping_list">Список покупок</string>
+
+    <!--тайтал navigationBottom-->
+    <string name="shoping_list">Продукты</string>
+    <string name="home">Домой</string>
+    <string name="search">Поиск</string>
+    <string name="add_recipe">Рецепт</string>
+    <string name="profile">Профиль</string>
 
 
     <!-- для соглосования окончаний с разным количеством
