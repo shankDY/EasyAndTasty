@@ -46,4 +46,8 @@ class RecipeOpenViewModel(onFailureListener: OnFailureListener,
                 calories = calories,
                 ingredients = ingredients
             )
+
+    fun addFavorites(mRecipe: Recipe?) {
+        recipesRepo.addFavorites(usersRepo.currentUid(),mRecipe)
+    }
 }

@@ -1,4 +1,4 @@
-package com.shank.eat.screens.btm_navigation_screens.home
+package com.shank.eat.screens.btm_navigation_screens.profile.my_recipes
 
 import android.arch.lifecycle.LiveData
 import com.google.android.gms.tasks.OnFailureListener
@@ -6,28 +6,24 @@ import com.shank.eat.data.RecipesRepository
 import com.shank.eat.data.UsersRepository
 import com.shank.eat.data.common.map
 import com.shank.eat.model.Recipe
+import com.shank.eat.screens.btm_navigation_screens.home.FeedPostLikes
 import com.shank.eat.screens.common.BaseViewModel
 
-class HomeViewModel(onFailureListener: OnFailureListener,
-                    private val recipesRepo: RecipesRepository,
-                    usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
+class MyRecipesViewModel(onFailureListener: OnFailureListener,
+                         private val recipesRepo: RecipesRepository,
+                         usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
 
     private var  uid = usersRepo.currentUid()
-    var feedPosts: LiveData<List<Recipe>>
-
+    var myRecipes: LiveData<List<Recipe>>
     //карта лайков, где ключ uid , value - лайки
     private var loadedLikes = mapOf<String, LiveData<FeedPostLikes>>()
 
-   init {
-
-        //загружает feedposts и сортирует их по дате добавления
-        feedPosts = recipesRepo.getFeedPosts(uid!!).map {
+    init {
+        myRecipes = recipesRepo.getMyRecipes(uid!!).map {
             //сортируем посты по дате добавления
             it.sortedByDescending { it.timestampDate() }
         }
-   }
-
-
+    }
 
 
     //считываем лайки юзеров
@@ -63,8 +59,5 @@ class HomeViewModel(onFailureListener: OnFailureListener,
 
         recipesRepo.toogleLike(postId, uid!!).addOnFailureListener(onFailureListener)
     }
-
-
-
 
 }

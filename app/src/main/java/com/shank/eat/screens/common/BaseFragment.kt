@@ -8,15 +8,16 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavOptions
-import com.shank.eat.R
 import com.shank.eat.screens.App
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 abstract class BaseFragment : Fragment() {
 
     lateinit var commonViewModel: CommonViewModel
     private var parentActivity: BaseActivity? = null
+    private val ENTER_DURATION: Long = 1
+    private val EXIT_DURATION: Long = 2
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -78,6 +79,32 @@ abstract class BaseFragment : Fragment() {
                                          savedInstanceState: Bundle?): View
 
     fun getBaseActivity(): BaseActivity = parentActivity!!
+
+
+    //скрываем bottomNavigation
+     fun hideBottomNavigation() {
+        // bottom_navigation is BottomNavigationView
+        with(activity!!.bottom_navigation) {
+            if (visibility == View.VISIBLE && alpha == 1f) {
+                animate()
+                    .alpha(0f)
+                    .withEndAction { visibility = View.GONE }
+                    .duration = EXIT_DURATION
+            }
+        }
+    }
+
+    //показываем bottomNavigation
+   fun showBottomNavigation() {
+        // bottom_navigation is BottomNavigationView
+        with(activity!!.bottom_navigation) {
+            visibility = View.VISIBLE
+            animate()
+                .alpha(1f)
+                .duration = ENTER_DURATION
+        }
+
+    }
 
 
     //храним все статические переменные класса в данном объекте

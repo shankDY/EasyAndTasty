@@ -2,7 +2,6 @@ package com.shank.eat.screens.common
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SimpleItemAnimator
@@ -13,7 +12,6 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.*
-import androidx.navigation.NavOptions
 import com.shank.eat.R
 import com.shank.eat.common.formatRelativeTimestamp
 import java.util.*
@@ -70,14 +68,14 @@ fun ImageView.loadUserPhoto(photoUrl: String?) =
 
 
 //animation fragment Transactions
-fun options(): NavOptions? = NavOptions.Builder()
-    //данные анимации срабатываю при клике на кнопки(программные)
-    .setEnterAnim(R.animator.slide_in_right)
-    .setExitAnim(R.animator.slide_out_left)
-    //данные анимации срабатывают при выталкивании фрагмента из стека(по клику на кнопку назад(системную))
-    .setPopEnterAnim(R.animator.slide_in_right)
-    .setPopExitAnim(R.animator.slide_out_left)
-    .build()
+//fun options(): NavOptions? = NavOptions.Builder()
+//    //данные анимации срабатываю при клике на кнопки(программные)
+//    .setEnterAnim(R.anim.nav_default_enter_anim)
+//    .setExitAnim(R.anim.nav_default_exit_anim)
+//    //данные анимации срабатывают при выталкивании фрагмента из стека(по клику на кнопку назад(системную))
+//    .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
+//    .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
+//    .build()
 
 
 

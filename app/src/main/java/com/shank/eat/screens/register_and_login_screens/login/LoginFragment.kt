@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
@@ -16,7 +15,6 @@ import com.shank.eat.data.firebase.common.googleSignInClient
 import com.shank.eat.screens.btm_navigation_screens.MainActivity
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.coordinateBtnAndInputs
-import com.shank.eat.screens.common.options
 import com.shank.eat.screens.common.showToast
 import kotlinx.android.synthetic.main.login_fragment.*
 import kotlinx.android.synthetic.main.progressbar.*
@@ -59,7 +57,7 @@ class LoginFragment : BaseFragment(){
 
         //переход на registerEmailFragment
         buttonEmailLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment,null,options())
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment,null)
         }
 
 
@@ -67,7 +65,7 @@ class LoginFragment : BaseFragment(){
         //переход на ForgotPasswordFragment
 
         forgot_password_text.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment,null,options())
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment,null)
         }
 
 

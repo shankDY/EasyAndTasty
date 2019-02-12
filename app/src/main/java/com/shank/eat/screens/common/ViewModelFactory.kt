@@ -9,6 +9,11 @@ import com.shank.eat.screens.btm_navigation_screens.home.HomeViewModel
 import com.shank.eat.screens.btm_navigation_screens.shoping_lists.ShopingListsViewModel
 import com.shank.eat.screens.btm_navigation_screens.home.comments.CommentsViewModel
 import com.shank.eat.screens.btm_navigation_screens.home.recipes.RecipeOpenViewModel
+import com.shank.eat.screens.btm_navigation_screens.profile.ProfileViewModel
+import com.shank.eat.screens.btm_navigation_screens.profile.favorite_recipes.FavoriteRecipesViewModel
+import com.shank.eat.screens.btm_navigation_screens.profile.favorite_recipes.Favorite_RecipesFragment
+import com.shank.eat.screens.btm_navigation_screens.profile.follow.FollowUsersViewModel
+import com.shank.eat.screens.btm_navigation_screens.profile.my_recipes.MyRecipesViewModel
 import com.shank.eat.screens.register_and_login_screens.forgot_pass.ForgotPasswordViewModel
 import com.shank.eat.screens.register_and_login_screens.login.LoginViewModel
 import com.shank.eat.screens.register_and_login_screens.register.RegisterViewModel
@@ -27,26 +32,34 @@ class ViewModelFactory(private val app: App,
         val authManager = app.authManager
         val recipesRepo = app.resipesRepo
 
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
-            return LoginViewModel(authManager,app,commonViewModel,onFailureListener,usersRepo) as T
-        }else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)){
-            return RegisterViewModel(commonViewModel,app,onFailureListener,usersRepo) as T
-        }else if (modelClass.isAssignableFrom(ForgotPasswordViewModel::class.java)){
-            return ForgotPasswordViewModel(commonViewModel,app,onFailureListener,usersRepo) as T
-        }else if (modelClass.isAssignableFrom(AddRecipeViewModel::class.java)){
-            return AddRecipeViewModel(commonViewModel,app,onFailureListener,recipesRepo,usersRepo) as T
-        }else if (modelClass.isAssignableFrom(HomeViewModel::class.java)){
-            return HomeViewModel(onFailureListener,recipesRepo,usersRepo) as T
-        }else if (modelClass.isAssignableFrom(RecipeOpenViewModel::class.java)){
-            return RecipeOpenViewModel(onFailureListener,recipesRepo,usersRepo) as T
-        }else if (modelClass.isAssignableFrom(CommentsViewModel::class.java)){
-            return CommentsViewModel(recipesRepo,usersRepo,onFailureListener,app) as T
-        }else if (modelClass.isAssignableFrom(ShopingListsViewModel::class.java)){
-            return ShopingListsViewModel(onFailureListener,recipesRepo,usersRepo) as T
-        }else if (modelClass.isAssignableFrom(ShopingListOpenViewModel::class.java)){
-            return ShopingListOpenViewModel(onFailureListener,recipesRepo,usersRepo) as T
-        }else{
-            error("Unknow view model class $modelClass")
+        return when {
+            modelClass.isAssignableFrom(LoginViewModel::class.java) ->
+                LoginViewModel(authManager,app,commonViewModel,onFailureListener,usersRepo) as T
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) ->
+                RegisterViewModel(commonViewModel,app,onFailureListener,usersRepo) as T
+            modelClass.isAssignableFrom(ForgotPasswordViewModel::class.java) ->
+                ForgotPasswordViewModel(commonViewModel,app,onFailureListener,usersRepo) as T
+            modelClass.isAssignableFrom(AddRecipeViewModel::class.java) ->
+                AddRecipeViewModel(commonViewModel,app,onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(HomeViewModel::class.java) ->
+                HomeViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(RecipeOpenViewModel::class.java) ->
+                RecipeOpenViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(CommentsViewModel::class.java) ->
+                CommentsViewModel(recipesRepo,usersRepo,onFailureListener,app) as T
+            modelClass.isAssignableFrom(ShopingListsViewModel::class.java) ->
+                ShopingListsViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(ShopingListOpenViewModel::class.java) ->
+                ShopingListOpenViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(MyRecipesViewModel::class.java) ->
+                MyRecipesViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(FavoriteRecipesViewModel::class.java) ->
+                FavoriteRecipesViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(FollowUsersViewModel::class.java) ->
+                FollowUsersViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) ->
+                ProfileViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            else -> error("Unknow view model class $modelClass")
         }
     }
 

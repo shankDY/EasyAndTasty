@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@+id/nav_item_profile">
+
+
+    <fragment android:id="@+id/nav_item_profile"
+              android:name="com.shank.eat.screens.btm_navigation_screens.profile.ProfileFragment"
+              android:label="ProfileFragment"
+              tools:layout="@layout/profile_fragment">
+        <action android:id="@+id/action_nav_item_profile_to_followUsersFragment"
+                app:destination="@id/followUsersFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/followUsersFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.profile.follow.FollowUsersFragment"
+              android:label="FollowUsersFragment"
+              tools:layout="@layout/follow_users_fragment"/>
+
+
+</navigation>

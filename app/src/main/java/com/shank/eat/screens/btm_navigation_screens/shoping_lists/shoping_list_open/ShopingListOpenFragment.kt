@@ -71,4 +71,16 @@ class ShopingListOpenFragment : BaseFragment() {
 
         const val TAG = "ShopingListOpenFragment"
     }
+
+    override fun onStart() {
+        super.onStart()
+        //скрываем NavigationBottom при входе во фрагмент
+        hideBottomNavigation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //показываем NavigationBottom при выходе из фрагмента
+        showBottomNavigation()
+    }
 }

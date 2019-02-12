@@ -1,4 +1,4 @@
-package com.shank.eat.screens.btm_navigation_screens.home
+package com.shank.eat.screens.btm_navigation_screens.profile.my_recipes
 
 import android.os.Bundle
 import android.support.v7.util.DiffUtil
@@ -7,16 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavOptions
-import androidx.navigation.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.Recipe
+import com.shank.eat.screens.btm_navigation_screens.home.FeedPostLikes
 import com.shank.eat.screens.common.SimpleCallback
 import com.shank.eat.screens.common.loadImage
 import com.shank.eat.screens.common.loadUserPhoto
 import kotlinx.android.synthetic.main.feed_item.view.*
 
 //адаптер для постов
-class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyRecypeAdapter.ViewHolder>() {
 
     interface Listener{
 
@@ -65,7 +65,7 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
 
             //переходим в recipe fragment
             post_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_home_to_recipeFragment,bundle)
+//                findNavController().navigate(R.id.action_myRecipesFragment_to_recipeFragment,bundle,options())
             }
 
             //если лайков не, то прячим текст
@@ -104,7 +104,7 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
 
             //переходим в comments fragment
             comment_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_home_to_commentsFragment, bundle,options)
+//                findNavController().navigate(R.id.action_myRecipesFragment_to_commentsFragment, bundle,options)
             }
 
         }

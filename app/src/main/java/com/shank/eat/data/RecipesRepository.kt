@@ -26,6 +26,9 @@ interface RecipesRepository {
     //получаем конкретный рецепт пользователя
     fun getFeedPost(uid: String, postId: String): LiveData<Recipe>
 
+    //получаем все рецепты, конкретного юзера
+    fun getMyRecipes(uid: String): LiveData<List<Recipe>>
+
     //читаем лайкт
     fun getLikes(postId: String): LiveData<List<FeedPostLike>>
 
@@ -46,6 +49,17 @@ interface RecipesRepository {
 
     //получаем конкретный список , конкретного юзера
     fun getShopingList(uid: String, idShopingList: String): LiveData<ShopingList?>
+
+    //копируем посты юзера накоторого подписались себе в ленту
+    fun copyFeedPosts(postsAuthorUid: String, uid: String): Task<Unit>
+    //удаляем посты юзера, от которого отписались
+    fun deleteFeedPosts(postsAuthorUid: String, uid: String): Task<Unit>
+
+    //добавляем рецепт в любимые рецепты
+    fun addFavorites(uid: String?, recipe: Recipe?):Task<Unit>
+
+    //получаем список любимых рецептов юзера
+    fun getFavorites(uid: String): LiveData<List<Recipe>>
 }
 
 data class FeedPostLike(val userId: String)

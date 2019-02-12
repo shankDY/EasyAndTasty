@@ -17,6 +17,7 @@ abstract class BaseActivity: AppCompatActivity() {
         // чтобы активити так часто не убивались
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+
     }
 
 

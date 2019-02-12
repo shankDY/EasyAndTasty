@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@+id/nav_item_shoping_list">
+
+    <fragment android:id="@+id/nav_item_shoping_list"
+              android:name="com.shank.eat.screens.btm_navigation_screens.shoping_lists.ShopingListsFragment"
+              android:label="ShopingListFragment"
+              tools:layout="@layout/shoping_list_fragment">
+        <action android:id="@+id/action_nav_item_shoping_list_to_shopingListOpenFragment"
+                app:destination="@id/shopingListOpenFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/shopingListOpenFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.shoping_lists.shoping_list_open.ShopingListOpenFragment"
+              android:label="ShopingListOpenFragment"
+              tools:layout="@layout/shoping_list_open_fragment">
+
+        <argument
+                android:name="shoping_list_ID"
+                app:argType="string"/>
+    </fragment>
+
+</navigation>

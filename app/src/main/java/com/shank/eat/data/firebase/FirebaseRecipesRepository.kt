@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
+import com.shank.eat.common.TaskSourceOnCompleteListener
 import com.shank.eat.common.ValueEventListenerAdapter
 import com.shank.eat.common.task
 import com.shank.eat.common.toUnit
@@ -40,6 +41,61 @@ class FirebaseRecipesRepository : RecipesRepository {
     override fun getFeedPost(uid: String, postId: String): LiveData<Recipe> =
         FirebaseLiveData(database.child("users-recipes").child(uid).child(postId)).map{
             it.asRecipe()!!
+        }
+
+    //копируем посты юзеров на которые подписался
+    override fun getMyRecipes(uid: String): LiveData<List<Recipe>> =
+    //вычитаем посты юзера, для дальнейшей работы с ними(показать в профиле)
+        FirebaseLiveData(database.child("users-recipes").child(uid)
+            //фильтруем посты таким образом, чтобы скопировать только те посты,
+            // который соответствует нашему юзеру
+            .orderByChild("uid")
+            .equalTo(uid)).map {
+            it.children.map { it.asRecipe()!! }
+        }
+
+
+    //копируем посты юзеров на которые подписался
+    override fun copyFeedPosts(postsAuthorUid: String, uid: String): Task<Unit> =
+        task { taskSource ->
+
+            //вычитаем посты юзеров, для дальнейшей работы с ними(например показ в ленте)
+            database.child("users-recipes").child(postsAuthorUid)
+                //фильтруем посты таким образом, чтобы скопировать только те посты,
+                // который написал автор поста
+                .orderByChild("uid")
+                .equalTo(postsAuthorUid)
+                .addListenerForSingleValueEvent(ValueEventListenerAdapter {
+                    //карта, которая содержит посты юзеров
+                    val postsMap = it.children.map { it.key to it.value }.toMap()
+
+                    //вычитываем посты юзера на которого подписался пользователь и
+                    // кладем на ленту юзеру, который подписался
+                    database.child("users-recipes").child(uid)
+                        .updateChildren(postsMap)
+                        .toUnit()
+                        .addOnCompleteListener(TaskSourceOnCompleteListener(taskSource))
+                })
+        }
+
+    override fun deleteFeedPosts(postsAuthorUid: String, uid: String): Task<Unit> =
+        task { taskSource ->
+
+            //вычитаем все feed-посты нашего uid, у которых childUid равен postAuthorUid
+            // и удаляем их
+            database.child("users-recipes").child(postsAuthorUid)
+                .orderByChild("uid")
+                .equalTo(postsAuthorUid)
+                .addListenerForSingleValueEvent(ValueEventListenerAdapter {
+                    //карта, которая содержит посты юзеров
+                    val postsMap = it.children.map { it.key to null }.toMap()
+
+                    //удаляем посты юзверя, от которого отписался пользователь
+                    database.child("users-recipes").child(uid)
+                        .updateChildren(postsMap)
+                        .toUnit()
+                        .addOnCompleteListener(TaskSourceOnCompleteListener(taskSource))
+                })
         }
 
 
@@ -112,10 +168,23 @@ class FirebaseRecipesRepository : RecipesRepository {
     override fun getComments(postId: String): LiveData<List<Comment>> =
         FirebaseLiveData(database.child("comments").child(postId)).map {
             //получили список коментиков и замапили его
-            it.children.map {it.asComment()!!}
+            it.children.map {
+                it.asComment()!!
+            }
         }
 
 
+    //добавляем рецепт в избранное
+    override fun addFavorites(uid: String?, recipe: Recipe?) =
+        database.child("favorite-recipes").child(uid!!).push().setValue(recipe).toUnit()
+
+    //получаем список любимых рецептов юзера
+    override fun getFavorites(uid:String): LiveData<List<Recipe>> =
+        FirebaseLiveData(database.child("favorite-recipes").child(uid)).map {
+            it.children.map {
+                it.asRecipe()!!
+            }
+        }
 
     //функция расширения, с помощью которой получаем замапенный список постов, где id поста - ключ
     private fun DataSnapshot.asRecipe(): Recipe? =

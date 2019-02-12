@@ -10,11 +10,10 @@ import androidx.navigation.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.ShopingList
 import com.shank.eat.screens.common.SimpleCallback
-import com.shank.eat.screens.common.options
 import kotlinx.android.synthetic.main.shopping_list_item.view.*
 
 
-class ShopingListsAdapter() : RecyclerView.Adapter<ShopingListsAdapter.ViewHolder>() {
+class ShopingListsAdapter : RecyclerView.Adapter<ShopingListsAdapter.ViewHolder>() {
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
     var shopingList = listOf<ShopingList?>()
@@ -37,8 +36,7 @@ class ShopingListsAdapter() : RecyclerView.Adapter<ShopingListsAdapter.ViewHolde
             //переходим в ShopingListOpenFragment
             card_list_shoping.setOnClickListener {
 
-                findNavController().navigate(R.id.action_nav_item_shoping_list_to_shopingListOpenFragment,bundle,
-                    options())
+                findNavController().navigate(R.id.action_nav_item_shoping_list_to_shopingListOpenFragment,bundle)
             }
         }
     }

@@ -55,9 +55,7 @@ class HomeFragment : BaseFragment(), FeedAdapter.Listener{
           getViewLifecycleOwner () или getViewLifecycleOwnerLiveData (), которые были добавлены в библиотеку
           поддержки 28.0.0 и AndroidX 1.0.0, так что LiveData будет удалять наблюдателей при
           каждом разрушении представления фрагмента:*/
-        mViewModel.feedPosts.observe(viewLifecycleOwnerLiveData.value!!, Observer{ it?.let{ mAdapter.updatePosts(it)
-        }
-        })
+        mViewModel.feedPosts.observe(viewLifecycleOwnerLiveData.value!!, Observer{ it?.let{ mAdapter.updatePosts(it) } })
 
 
         img.setOnClickListener {

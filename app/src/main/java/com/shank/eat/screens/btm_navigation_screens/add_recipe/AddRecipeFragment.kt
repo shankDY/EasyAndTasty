@@ -34,6 +34,7 @@ class AddRecipeFragment : BaseFragment() {
 
     private val MY_PERMISSIONS_REQUEST: Int = 123
 
+
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.add_recipe_fragment, parent, false)
@@ -204,6 +205,7 @@ class AddRecipeFragment : BaseFragment() {
             }
         } else {
             // Permission has already been granted
+            mPicture.takeCameraPicture()
 
         }
 
@@ -219,6 +221,7 @@ class AddRecipeFragment : BaseFragment() {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
+                    mPicture.getPicture()
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
@@ -235,9 +238,23 @@ class AddRecipeFragment : BaseFragment() {
     }
 
 
+    override fun onStart() {
+        super.onStart()
+        //скрываем NavigationBottom при входе во фрагмент
+        hideBottomNavigation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //показываем NavigationBottom при выходе из фрагмента
+        showBottomNavigation()
+    }
+
+
     companion object {
         const val TAG = "AddRecipeFragment"
     }
+
 
 
 }

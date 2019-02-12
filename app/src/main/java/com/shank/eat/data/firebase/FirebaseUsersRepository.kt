@@ -50,7 +50,10 @@ class FirebaseUsersRepository : UsersRepository {
     //ссылка на авторизованного юзера
     override fun currentUid() = auth.currentUser?.uid
 
-
+    //получаем всех пользователей
+    override fun getUsers(): LiveData<List<User>> = database.child("users").liveData().map{
+        it.children.map { it.asUser()!! }
+    }
 
     // функция расширения, с помощью которой получаем замапенный список юзеров, где uid -ключ(uid юзера из User,
     //будет соответствовать uid полученного с бд юзера )
@@ -73,4 +76,32 @@ class FirebaseUsersRepository : UsersRepository {
             .addOnSuccessListener { Tasks.forResult(it) }
         }
     }
+
+
+
+    //добавить подписку(подписаться на юзера)
+    //fromUid -наш Юзер, toUid - другие пользователи
+    override fun addFollow(fromUid: String, toUid: String): Task<Unit> =
+        getFollowsRef(fromUid, toUid).setValue(true).toUnit()
+
+    //удалить подписку(отписаться от юзверя)
+    override fun deleteFollow(fromUid: String, toUid: String): Task<Unit> =
+        getFollowsRef(fromUid, toUid).removeValue().toUnit()
+
+    //добавить подписчика(подписанный на юзера юзверь)
+    override fun addFollower(fromUid: String, toUid: String): Task<Unit> =
+        getFollowersRef(fromUid, toUid).setValue(true).toUnit()
+
+    //удалить подписчика(юзверь отписался от юзера)
+    override fun deleteFollower(fromUid: String, toUid: String): Task<Unit> =
+        getFollowersRef(fromUid, toUid).removeValue().toUnit()
+
+
+    //получаем ссылку на бд с подписками
+    private fun getFollowsRef(fromUid: String, toUid: String)=
+        database.child("users").child(fromUid).child("follows").child(toUid)
+
+    //получаем ссылку на бд с подписчиками
+    private fun getFollowersRef(fromUid: String, toUid: String)=
+        database.child("users").child(toUid).child("followers").child(fromUid)
 }

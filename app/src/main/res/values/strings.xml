@@ -68,6 +68,13 @@
     <string name="search">Поиск</string>
     <string name="add_recipe">Рецепт</string>
     <string name="profile">Профиль</string>
+    <string name="posts">Рецептов</string>
+    <string name="followers">Подписчики</string>
+    <string name="following">Подписки</string>
+    <string name="edit_profile">Редактировать профиль</string>
+    <string name="follow_btn_text">Подписаться</string>
+    <string name="unfollow_btn_text">Отменить подписку</string>
+    <string name="discover_people">Поиск людей</string>
 
 
     <!-- для соглосования окончаний с разным количеством

@@ -9,10 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
+import com.shank.eat.model.Recipe
 import com.shank.eat.screens.btm_navigation_screens.add_recipe.AddRecipeFragment
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.loadImage
-import com.shank.eat.screens.common.loadUserPhoto
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.recipe_fragment.*
 
 
@@ -20,10 +21,11 @@ class RecipeOpenFragment : BaseFragment() {
 
 
 
-    private lateinit var mOpenViewModel: RecipeOpenViewModel
+    private lateinit var mViewModel: RecipeOpenViewModel
     private var ingredients = arrayListOf<String>()
     private var recipeName:String? = null
     private var calories: String? = null
+    private var mRecipe: Recipe? = null
 
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
@@ -34,7 +36,7 @@ class RecipeOpenFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mOpenViewModel = initViewModel()
+        mViewModel = initViewModel()
 
 
         //id нашего рецепта(получаем при клике на определенную карту)
@@ -43,40 +45,47 @@ class RecipeOpenFragment : BaseFragment() {
 
 
         //инициализируем наш postId - и получаем рецепт
-        mOpenViewModel.init(postId.toString())
+        mViewModel.init(postId.toString())
 
 
         //как только получаем рецепт с бд. то проставляем данные в поля
-        mOpenViewModel.recipe.observe(viewLifecycleOwnerLiveData.value!!, Observer { it.let {recipe ->
+        mViewModel.recipe.observe(viewLifecycleOwnerLiveData.value!!, Observer { it.let { recipe ->
 
-                recipe_image.loadImage(recipe?.recipeImg)
-                name_recipe_text.text = recipe?.nameRecipe
-                categories_text.text = recipe?.calories
-                recipe_difficulty_text.text = recipe?.difficulty
-                coocking_time_text.text = recipe?.cookingTime
-                calories_text.text = recipe?.calories
-                protein_text.text = recipe?.protein
-                fat_text.text = recipe?.fat
-                carbohydrates_text.text = recipe?.carbohydrates
-                instruction_text.text = recipe?.instruction
+            mRecipe = recipe
 
-                //данные для списка покупок
-                ingredients.addAll(recipe?.ingredients!!)
-                recipeName = recipe.nameRecipe
-                calories = recipe.calories
+            recipe_image.loadImage(recipe?.recipeImg)
+            name_recipe_text.text = recipe?.nameRecipe
+            categories_text.text = recipe?.calories
+            recipe_difficulty_text.text = recipe?.difficulty
+            coocking_time_text.text = recipe?.cookingTime
+            calories_text.text = recipe?.calories
+            protein_text.text = recipe?.protein
+            fat_text.text = recipe?.fat
+            carbohydrates_text.text = recipe?.carbohydrates
+            instruction_text.text = recipe?.instruction
 
-                initRecyclerIngredients(recipe.ingredients)
-            }
-        })
+            //данные для списка покупок
+            ingredients.addAll(recipe?.ingredients!!)
+            recipeName = recipe.nameRecipe
+            calories = recipe.calories
+
+            initRecyclerIngredients(recipe.ingredients)
+        } })
 
 
         listShop_btn.setOnClickListener{
 
-            mOpenViewModel.createShopingList(recipeName, calories ,ingredients)
+            mViewModel.createShopingList(recipeName, calories ,ingredients)
         }
+
+
 
         back_img_recipe.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        floatImg_favorite.setOnClickListener {
+            mViewModel.addFavorites(mRecipe)
         }
 
     }
@@ -94,8 +103,22 @@ class RecipeOpenFragment : BaseFragment() {
     }
 
 
+    override fun onStart() {
+        super.onStart()
+        //скрываем NavigationBottom при входе во фрагмент
+        hideBottomNavigation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //показываем NavigationBottom при выходе из фрагмента
+        showBottomNavigation()
+    }
+
+
     companion object {
 
         const val TAG = "RecipeOpenFragment"
     }
+
 }
