@@ -6,7 +6,7 @@
 
 
     <fragment android:id="@+id/nav_item_search"
-              android:name="com.shank.eat.screens.btm_navigation_screens.search.SearchFragment"
+              android:name="com.shank.eat.screens.btm_navigation.search.SearchFragment"
               android:label="SearchFragment"
               tools:layout="@layout/fragment_search"/>
 

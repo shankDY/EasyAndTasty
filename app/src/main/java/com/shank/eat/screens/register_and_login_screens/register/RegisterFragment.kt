@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.shank.eat.R
-import com.shank.eat.screens.btm_navigation_screens.MainActivity
+import com.shank.eat.screens.btm_navigation.MainActivity
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.coordinateBtnAndInputs
 import kotlinx.android.synthetic.main.layout_progressbar.*

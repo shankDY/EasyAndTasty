@@ -5,7 +5,7 @@
             app:startDestination="@+id/nav_item_home">
 
     <fragment android:id="@+id/nav_item_home"
-              android:name="com.shank.eat.screens.btm_navigation_screens.home.HomeFragment"
+              android:name="com.shank.eat.screens.btm_navigation.home.HomeFragment"
               android:label="HomeFragment"
               tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_nav_item_home_to_recipeFragment"
@@ -18,11 +18,11 @@
 
 
     <fragment android:id="@+id/recipeFragment"
-              android:name="com.shank.eat.screens.other_screens.recipes.RecipeFragment"
+              android:name="com.shank.eat.screens.other.recipes.RecipeFragment"
               android:label="recipe_fragment"/>
 
     <fragment android:id="@+id/commentsFragment"
-              android:name="com.shank.eat.screens.other_screens.comments.CommentsFragment"
+              android:name="com.shank.eat.screens.other.comments.CommentsFragment"
               android:label="comments_fragment"
               tools:layout="@layout/fragment_comments"/>
 </navigation>

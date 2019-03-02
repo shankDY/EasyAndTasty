@@ -6,7 +6,7 @@
 
 
     <fragment android:id="@+id/nav_item_profile"
-              android:name="com.shank.eat.screens.btm_navigation_screens.profile.ProfileFragment"
+              android:name="com.shank.eat.screens.btm_navigation.profile.ProfileFragment"
               android:label="ProfileFragment"
               tools:layout="@layout/fragment_profile">
 
@@ -22,13 +22,13 @@
     </fragment>
 
     <fragment android:id="@+id/followUsersFragment"
-              android:name="com.shank.eat.screens.other_screens.people.SearchPeopleFragment"
+              android:name="com.shank.eat.screens.other.people.SearchPeopleFragment"
               android:label="FollowUsersFragment"
               tools:layout="@layout/fragment_reseach_users"/>
 
 
     <fragment android:id="@+id/favorite_RecipesFragment"
-              android:name="com.shank.eat.screens.other_screens.favorite_recipes.Favorite_RecipesFragment"
+              android:name="com.shank.eat.screens.other.favorite_recipes.Favorite_RecipesFragment"
               android:label="Favorite_RecipesFragment"
               tools:layout="@layout/fragment_favorite_recipes">
         <action android:id="@+id/action_favorite_RecipesFragment_to_recipeOpenFragment"
@@ -39,11 +39,11 @@
 
 
     <fragment android:id="@+id/commentsFragment2"
-              android:name="com.shank.eat.screens.other_screens.comments.CommentsFragment"
+              android:name="com.shank.eat.screens.other.comments.CommentsFragment"
               android:label="CommentsFragment"/>
 
     <fragment android:id="@+id/recipeOpenFragment"
-              android:name="com.shank.eat.screens.other_screens.recipes.RecipeFragment"
+              android:name="com.shank.eat.screens.other.recipes.RecipeFragment"
               android:label="RecipeOpenFragment"/>
 
 

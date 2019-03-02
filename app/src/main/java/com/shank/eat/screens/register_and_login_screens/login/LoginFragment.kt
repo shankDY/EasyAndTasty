@@ -12,7 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.shank.eat.R
 import com.shank.eat.data.firebase.common.googleSignInClient
-import com.shank.eat.screens.btm_navigation_screens.MainActivity
+import com.shank.eat.screens.btm_navigation.MainActivity
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.coordinateBtnAndInputs
 import com.shank.eat.screens.common.showToast

@@ -5,7 +5,7 @@
             app:startDestination="@+id/nav_item_add_recipe">
 
     <fragment android:id="@+id/nav_item_add_recipe"
-              android:name="com.shank.eat.screens.btm_navigation_screens.add_recipe.AddRecipeFragment"
+              android:name="com.shank.eat.screens.btm_navigation.add_recipe.AddRecipeFragment"
               android:label="AddRecipeFragment"
               tools:layout="@layout/fragment_add_recipe"/>
 
