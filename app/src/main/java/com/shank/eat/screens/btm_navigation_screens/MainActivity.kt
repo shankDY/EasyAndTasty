@@ -1,20 +1,17 @@
 package com.shank.eat.screens.btm_navigation_screens
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.navigation.Navigation
 import com.shank.eat.R
-import com.shank.eat.screens.common.BaseActivity
-import com.shank.eat.screens.common.BottomNavController
-import com.shank.eat.screens.common.setUpNavigation
-import com.shank.eat.screens.common.setupAuthGuard
+import com.shank.eat.screens.common.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider {
+class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider, PhotoDialogFragment.OnFragmentInteractionListener{
 
-
-
+    var img: Uri? = null
     private val navController by lazy(LazyThreadSafetyMode.NONE){
         Navigation.findNavController(this, R.id.btm_nav_host)
     }
@@ -29,28 +26,12 @@ class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider {
 
         setupAuthGuard {
             Log.d(TAG, "onCreate")
-
             bottomNavController.setNavGraphProvider(this)
             bottom_navigation.setUpNavigation(bottomNavController)
-
-
-
             //Если savedInstanceState == null, значит активити только созданно. и тогда мы создаем фрагмент
             // (в нашем случаи можем переходить по фрагментам с помощью нижней навигации)
             if (savedInstanceState == null)
                 bottomNavController.onNavigationItemSelected()
-
-
-
-//            findNavController(R.id.btm_nav_host).addOnDestinationChangedListener {
-//                    _, destination, _ ->
-//                when (destination.id) {
-//                    R.id.recipeFragment,
-//                    R.id.nav_item_add_recipe,
-//                    R.id.commentsFragment,
-//                    R.id.shopingListOpenFragment-> hideBottomNavigation()
-//                else -> showBottomNavigation()
-//            }  }
             }
         }
 
@@ -68,11 +49,13 @@ class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider {
     override fun onBackPressed() = bottomNavController.onBackPressed()
 
 
-
-
-
-
+    override fun onFragmentInteraction(uri: Uri) {
+        this.img = uri
+    }
     companion object {
         const val TAG = "MainActivity"
     }
+
+
+
 }

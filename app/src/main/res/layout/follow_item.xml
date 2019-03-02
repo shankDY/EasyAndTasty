@@ -21,12 +21,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="alex"
-            app:layout_constraintVertical_bias="0.2"
             app:layout_constraintStart_toEndOf="@id/photo_image"
             app:layout_constraintTop_toTopOf="@id/photo_image"
-            app:layout_constraintBottom_toBottomOf="@id/photo_image"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 

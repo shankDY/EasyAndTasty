@@ -40,7 +40,7 @@ class RecipeOpenFragment : BaseFragment() {
 
 
         //id нашего рецепта(получаем при клике на определенную карту)
-        val postId = arguments!!.getString("postId")?: findNavController().popBackStack()
+        val postId = arguments?.getString("postId")
 
 
 
@@ -55,7 +55,7 @@ class RecipeOpenFragment : BaseFragment() {
 
             recipe_image.loadImage(recipe?.recipeImg)
             name_recipe_text.text = recipe?.nameRecipe
-            categories_text.text = recipe?.calories
+            categories_text.text = recipe?.category
             recipe_difficulty_text.text = recipe?.difficulty
             coocking_time_text.text = recipe?.cookingTime
             calories_text.text = recipe?.calories

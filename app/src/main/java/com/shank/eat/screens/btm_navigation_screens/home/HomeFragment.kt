@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.shank.eat.R
+import com.shank.eat.common.AuthManager
+import com.shank.eat.common.firebase.FirebaseAuthManager
 import com.shank.eat.data.firebase.common.auth
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.recyclerAnimatorOff
@@ -60,6 +62,8 @@ class HomeFragment : BaseFragment(), FeedAdapter.Listener{
 
         img.setOnClickListener {
             auth.signOut()
+
+            FirebaseAuthManager().googlesignOut(getBaseActivity())
         }
 
 
@@ -70,7 +74,7 @@ class HomeFragment : BaseFragment(), FeedAdapter.Listener{
     override fun loadLikes(id: String, position: Int){
 
         if(mViewModel.getLikes(id) == null){
-            mViewModel.loadLikes(id).observe(viewLifecycleOwner, Observer { it?.let{ postLikes ->
+            mViewModel.loadLikes(id).observe(viewLifecycleOwnerLiveData.value!!, Observer { it?.let{ postLikes ->
                     mAdapter.updatePostLikes(position, postLikes)
                 }
             })

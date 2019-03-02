@@ -87,6 +87,9 @@
                         android:layout_height="60dp"
                         android:background="@color/transparent"
                         android:scaleType="centerCrop"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         android:src="@drawable/ic_google"/>
 
                 <com.shank.eat.screens.common.CustomImageButton
@@ -95,6 +98,9 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginStart="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/buttonGoogleLogin"
                         android:background="@color/transparent"
                         android:scaleType="centerCrop"

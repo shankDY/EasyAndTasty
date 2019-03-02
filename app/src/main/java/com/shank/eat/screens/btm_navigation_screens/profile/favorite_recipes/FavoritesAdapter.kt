@@ -66,7 +66,7 @@ class FavoritesAdapter(private val listener: Listener) : RecyclerView.Adapter<Fa
 
             //переходим в recipe fragment
             post_image.setOnClickListener {
-//                findNavController().navigate(R.id.action_nav_item_home_to_recipeFragment,bundle)
+                findNavController().navigate(R.id.action_favorite_RecipesFragment_to_recipeOpenFragment, bundle)
             }
 
             //если лайков не, то прячим текст
@@ -90,7 +90,7 @@ class FavoritesAdapter(private val listener: Listener) : RecyclerView.Adapter<Fa
             //если лайкнули , то ставим красное сердечко, если нет прозрачное
             like_image.setImageResource(
                 if(likes.likedByUser) R.drawable.ic_likes_active
-                else R.drawable.ic_like)
+                else R.drawable.ic_like_inactive)
 
             listener.loadLikes(post.id, position)
 
@@ -105,7 +105,7 @@ class FavoritesAdapter(private val listener: Listener) : RecyclerView.Adapter<Fa
 
             //переходим в comments fragment
             comment_image.setOnClickListener {
-//                findNavController().navigate(R.id.action_nav_item_home_to_commentsFragment, bundle,options)
+                findNavController().navigate(R.id.action_favorite_RecipesFragment_to_commentsFragment2, bundle,options)
             }
 
         }
@@ -135,7 +135,7 @@ class FavoritesAdapter(private val listener: Listener) : RecyclerView.Adapter<Fa
     fun updatePostLikes(position: Int, likes: FeedPostLikes) {
 
         //передаем в карту position и лайк
-        postLikes += (position to likes)
+        postLikes = postLikes + (position to likes)
         //говорим нашему viewHolder перерисовать вьюшку по позиции
         notifyItemChanged(position)
     }

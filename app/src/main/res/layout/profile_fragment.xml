@@ -3,7 +3,8 @@
 <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.design.widget.AppBarLayout
@@ -11,9 +12,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
     android:background="@color/whitish">
-<android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
     <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -47,14 +45,6 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                            android:id="@+id/discover_people_image"
-                            style="@style/icon"
-                            android:src="@drawable/ic_add_friends"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/settings_image"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
                             android:id="@+id/settings_image"
                             style="@style/icon"
                             android:src="@drawable/ic_more"
@@ -65,6 +55,7 @@
                 </android.support.constraint.ConstraintLayout>
 
             </android.support.v7.widget.Toolbar>
+
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="0dp"
@@ -155,24 +146,22 @@
 
     <android.support.design.widget.TabLayout
             android:id="@+id/tabs_profile"
-            app:layout_constraintTop_toBottomOf="@+id/collaps_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabGravity="fill"
-            app:tabMode="fixed">
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabGravity="center"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/black"
+            app:tabIndicatorHeight="0dp"
+            android:background="@drawable/top_border_grey">
     </android.support.design.widget.TabLayout>
-
-</android.support.constraint.ConstraintLayout>
-
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/myRecipesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/profile_viewpager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_anchorGravity="bottom|center"/>
-
-
+            tools:listitem="@layout/feed_item"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

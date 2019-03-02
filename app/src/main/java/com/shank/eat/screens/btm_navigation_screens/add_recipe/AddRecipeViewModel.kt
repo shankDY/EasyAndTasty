@@ -22,6 +22,7 @@ class AddRecipeViewModel(private val commonViewModel: CommonViewModel, private v
                          private val usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
 
     val user = usersRepo.getUser()
+    private var img: Uri? = null
     private val _clearEdditText = SingleLiveEvent<Unit>()
     val clearEdditText = _clearEdditText
 
@@ -34,7 +35,6 @@ class AddRecipeViewModel(private val commonViewModel: CommonViewModel, private v
         ingredients: ArrayList<String>,
         coockingTime: String,
         instraction: String,
-        imageUri: Uri?,
         calories: String,
         protein: String,
         fat: String,
@@ -44,9 +44,9 @@ class AddRecipeViewModel(private val commonViewModel: CommonViewModel, private v
             && coockingTime.isNotEmpty() && instraction.isNotEmpty() && calories.isNotEmpty()
             && protein.isNotEmpty() && fat.isNotEmpty() && carbohydrates.isNotEmpty()){
 
-            if (imageUri != null){
+            if (img != null){
 
-                usersRepo.uploadUserImage(user.uid, imageUri).onSuccessTask { downloadUrl ->
+                usersRepo.uploadUserImage(user.uid, img!!).onSuccessTask { downloadUrl ->
 
                     recipesRepo.createRecipe(
                         user.uid, mkRecipe(user, nameRecipe, category, recipeDificulty, ingredients,
@@ -84,8 +84,8 @@ class AddRecipeViewModel(private val commonViewModel: CommonViewModel, private v
         carbohydrates: String
     ): Recipe {
 
-        return Recipe(uid = user.uid, username = user.name,userPhoto = user.photo,nameRecipe = nameRecipe, ingredients = ingredients,
-            cookingTime = coockingTime, instruction = instraction, category = category,
+        return Recipe(uid = user.uid, username = user.name,userPhoto = user.photo,nameRecipe = nameRecipe,
+            ingredients = ingredients, cookingTime = coockingTime, instruction = instraction, category = category,
             difficulty = recipeDificulty, recipeImg = photoRecipe, calories = calories, protein = protein,fat = fat,
             carbohydrates = carbohydrates)
     }
@@ -116,6 +116,9 @@ class AddRecipeViewModel(private val commonViewModel: CommonViewModel, private v
         }
     }
 
+    fun getUri(uri: Uri) {
+       this.img = uri
+    }
 
 
 }

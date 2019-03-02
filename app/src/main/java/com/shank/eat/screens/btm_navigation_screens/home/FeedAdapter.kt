@@ -88,8 +88,12 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
             }
             //если лайкнули , то ставим красное сердечко, если нет прозрачное
             like_image.setImageResource(
-                if(likes.likedByUser) R.drawable.ic_likes_active
-                else R.drawable.ic_like)
+                if(likes.likedByUser) {
+                    R.drawable.ic_likes_active
+                } else {
+                    R.drawable.ic_like_inactive
+                }
+            )
 
             listener.loadLikes(post.id, position)
 
@@ -99,7 +103,6 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
                 .setExitAnim(R.animator.slide_up)
                 //данные анимации срабатывают при выталкивании фрагмента из стека(по клику на кнопку назад(системную))
                 .setPopExitAnim(R.animator.slide_up)
-
                 .build()
 
             //переходим в comments fragment
@@ -108,15 +111,10 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
             }
 
         }
-
-
     }
 
     //количество постов
     override fun getItemCount() = posts.size
-
-
-
     //обновляем наш recicler с рецептами
     fun updatePosts(newPosts: List<Recipe>) {
         //считает разницу между старым и новым значением аргумента, находит те, что изменились
@@ -134,7 +132,7 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
     fun updatePostLikes(position: Int, likes: FeedPostLikes) {
 
         //передаем в карту position и лайк
-        postLikes += (position to likes)
+        postLikes = postLikes + (position to likes)
         //говорим нашему viewHolder перерисовать вьюшку по позиции
         notifyItemChanged(position)
     }

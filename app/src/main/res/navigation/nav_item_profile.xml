@@ -9,14 +9,50 @@
               android:name="com.shank.eat.screens.btm_navigation_screens.profile.ProfileFragment"
               android:label="ProfileFragment"
               tools:layout="@layout/profile_fragment">
+
         <action android:id="@+id/action_nav_item_profile_to_followUsersFragment"
                 app:destination="@id/followUsersFragment"/>
+        <action android:id="@+id/action_nav_item_profile_to_favorite_RecipesFragment"
+                app:destination="@id/favorite_RecipesFragment"/>
+        <action android:id="@+id/action_nav_item_profile_to_recipeOpenFragment"
+                app:destination="@id/recipeOpenFragment"/>
+        <action android:id="@+id/action_nav_item_profile_to_commentsFragment2"
+                app:destination="@id/commentsFragment2"/>
+
     </fragment>
 
     <fragment android:id="@+id/followUsersFragment"
               android:name="com.shank.eat.screens.btm_navigation_screens.profile.follow.FollowUsersFragment"
               android:label="FollowUsersFragment"
               tools:layout="@layout/follow_users_fragment"/>
+
+
+    <fragment android:id="@+id/favorite_RecipesFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.profile.favorite_recipes.Favorite_RecipesFragment"
+              android:label="Favorite_RecipesFragment"
+              tools:layout="@layout/favorite_recipes_fragment">
+        <action android:id="@+id/action_favorite_RecipesFragment_to_recipeOpenFragment"
+                app:destination="@id/recipeOpenFragment"/>
+        <action android:id="@+id/action_favorite_RecipesFragment_to_commentsFragment2"
+                app:destination="@id/commentsFragment2"/>
+    </fragment>
+
+
+    <fragment android:id="@+id/commentsFragment2"
+              android:name="com.shank.eat.screens.btm_navigation_screens.home.comments.CommentsFragment"
+              android:label="CommentsFragment">
+        <argument
+                android:name="recipeId"
+                app:argType="string"/>
+    </fragment>
+
+    <fragment android:id="@+id/recipeOpenFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.home.recipes.RecipeOpenFragment"
+              android:label="RecipeOpenFragment">
+        <argument
+                android:name="recipeId"
+                app:argType="string"/>
+    </fragment>
 
 
 </navigation>

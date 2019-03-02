@@ -52,7 +52,6 @@
     </string-array>
 
 
-
     <!-- бжу для  блюд -->
     <string name="calories_add">Калории</string>
     <string name="carbohydrates_add">Углеводы</string>
@@ -75,6 +74,7 @@
     <string name="follow_btn_text">Подписаться</string>
     <string name="unfollow_btn_text">Отменить подписку</string>
     <string name="discover_people">Поиск людей</string>
+    <string name="favorite">Любимые рецепты</string>
 
 
     <!-- для соглосования окончаний с разным количеством
@@ -83,4 +83,10 @@
         <item quantity="one">%d Лайк</item>
         <item quantity="other">%d Лайков</item>
     </plurals>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="addPicture">Добавить картинку</string>
+    <string name="take_picture">Выбрать фото</string>
+    <string name="take_photo">Сделать снимок</string>
 </resources>

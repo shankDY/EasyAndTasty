@@ -1,4 +1,4 @@
-package com.shank.eat.screens.btm_navigation_screens.profile.my_recipes
+package com.shank.eat.screens.btm_navigation_screens.profile
 
 import android.os.Bundle
 import android.support.v7.util.DiffUtil
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.Recipe
 import com.shank.eat.screens.btm_navigation_screens.home.FeedPostLikes
@@ -63,9 +64,8 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
             val bundle = Bundle()
             bundle.putString("postId", post.id)
 
-            //переходим в recipe fragment
             post_image.setOnClickListener {
-//                findNavController().navigate(R.id.action_myRecipesFragment_to_recipeFragment,bundle,options())
+                findNavController().navigate(R.id.action_nav_item_profile_to_recipeOpenFragment, bundle)
             }
 
             //если лайков не, то прячим текст
@@ -89,7 +89,7 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
             //если лайкнули , то ставим красное сердечко, если нет прозрачное
             like_image.setImageResource(
                 if(likes.likedByUser) R.drawable.ic_likes_active
-                else R.drawable.ic_like)
+                else R.drawable.ic_like_inactive)
 
             listener.loadLikes(post.id, position)
 
@@ -104,7 +104,7 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
 
             //переходим в comments fragment
             comment_image.setOnClickListener {
-//                findNavController().navigate(R.id.action_myRecipesFragment_to_commentsFragment, bundle,options)
+                findNavController().navigate(R.id.action_nav_item_profile_to_commentsFragment2, bundle,options)
             }
 
         }
@@ -134,7 +134,7 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
     fun updatePostLikes(position: Int, likes: FeedPostLikes) {
 
         //передаем в карту position и лайк
-        postLikes += (position to likes)
+        postLikes = postLikes + (position to likes)
         //говорим нашему viewHolder перерисовать вьюшку по позиции
         notifyItemChanged(position)
     }

@@ -2,18 +2,17 @@ package com.shank.eat.screens.common
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v4.content.FileProvider
 import android.support.v4.util.AtomicFile
+import com.shank.eat.screens.btm_navigation_screens.MainActivity
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.filefilter.DirectoryFileFilter
 import org.apache.commons.io.filefilter.RegexFileFilter
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*

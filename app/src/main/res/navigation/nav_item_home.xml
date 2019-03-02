@@ -36,6 +36,4 @@
                 android:name="recipeId"
                 app:argType="string"/>
     </fragment>
-
-
 </navigation>

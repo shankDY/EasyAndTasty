@@ -1,8 +1,9 @@
 package com.shank.eat.screens.btm_navigation_screens.profile
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.TabLayout
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.loadUserPhoto
+import com.shank.eat.screens.common.recyclerAnimatorOff
 import kotlinx.android.synthetic.main.profile_fragment.*
+import android.graphics.PorterDuff
+import android.widget.TextView
 
+class ProfileFragment : BaseFragment(), MyRecypeAdapter.Listener{
 
-class ProfileFragment : BaseFragment() {
-
-
+    private lateinit var mAdapter: MyRecypeAdapter
     private lateinit var mViewModel: ProfileViewModel
 
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
@@ -28,16 +31,8 @@ class ProfileFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = initViewModel()
-
-        val pageAdapter = ProfilePagerAdapter(childFragmentManager)
-        profile_viewpager.adapter = pageAdapter
-
-        tabs_profile.setupWithViewPager(profile_viewpager)
-
-        discover_people_image.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_item_profile_to_followUsersFragment)
-        }
-
+        //инициализация табов
+        initTabs()
         mViewModel.user.observe(viewLifecycleOwnerLiveData.value!!, Observer { it ->
             it?.let {
                 profile_image.loadUserPhoto(it.photo)
@@ -57,6 +52,72 @@ class ProfileFragment : BaseFragment() {
         })
 
 
+        mAdapter = MyRecypeAdapter(this)
+
+        myRecipesRecyclerView.adapter = mAdapter
+
+        //отключаем анимацию отрисовки картинки
+        recyclerAnimatorOff(myRecipesRecyclerView)
+
+        myRecipesRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        mViewModel.myRecipes.observe(viewLifecycleOwnerLiveData.value!!, Observer { it?.let {
+            mAdapter.updatePosts(it)
+        }})
+
+    }
+
+    private fun initTabs() {
+        tabs_profile.addTab(tabs_profile.newTab().setText("Мои рецепты").setIcon(R.drawable.ic_my_recipes))
+        tabs_profile.addTab(tabs_profile.newTab().setText("Избранное").setIcon(R.drawable.ic_favorite))
+        tabs_profile.addTab(tabs_profile.newTab().setText("Поиск людей").setIcon(R.drawable.ic_add_friends))
+
+        //handling tab click event
+        tabs_profile.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                Log.d(TAG,tab.position.toString())
+                when(tab.position){
+                    1 -> findNavController().navigate(R.id.action_nav_item_profile_to_favorite_RecipesFragment)
+                    2 -> findNavController().navigate(R.id.action_nav_item_profile_to_followUsersFragment)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
+    }
+
+//  private  fun setOnSelectedView(position: Int) {
+//        val tab = tabs_profile.getTabAt(position)
+//        if (tab != null){
+//            if (tab.isSelected){
+//                findNavController().navigate(R.id.action_nav_item_profile_to_favorite_RecipesFragment)
+//            }
+//        }
+//    }
+
+    //подгружаем лайкосики
+    override fun loadLikes(id: String, position: Int){
+
+        if(mViewModel.getLikes(id) == null){
+            mViewModel.loadLikes(id).observe(viewLifecycleOwner, Observer { it?.let{ postLikes ->
+                mAdapter.updatePostLikes(position, postLikes)
+            }
+            })
+        }
+    }
+
+    //переключатель лайк
+    override fun toogleLike(postId: String) {
+
+        Log.d(TAG, "toogleLike: $postId")
+
+        mViewModel.toogleLike(postId)
     }
 
     companion object {

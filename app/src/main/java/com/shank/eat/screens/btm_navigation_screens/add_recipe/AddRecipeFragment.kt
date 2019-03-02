@@ -1,9 +1,9 @@
 package com.shank.eat.screens.btm_navigation_screens.add_recipe
 
 import android.Manifest
-import android.app.Activity.RESULT_OK
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.content.Intent
+import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -13,13 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.User
 import com.shank.eat.screens.common.BaseFragment
+import com.shank.eat.screens.common.PhotoDialogFragment
 import com.shank.eat.screens.common.PictureHelper
 import com.shank.eat.screens.common.loadImage
 import kotlinx.android.synthetic.main.add_recipe_fragment.*
+import com.shank.eat.screens.btm_navigation_screens.MainActivity
 
 
 class AddRecipeFragment : BaseFragment() {
@@ -41,39 +42,28 @@ class AddRecipeFragment : BaseFragment() {
     }
 
 
+    @SuppressLint("InflateParams")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
 
         Log.d(TAG, "onCreate")
 
         //инициализация mViewModel
         mViewModel = initViewModel()
 
-
-
-        //первоначально, если imageView пустой, то загружаем дефолтную картинку
-        if (recipe_image.drawable == null){
-
-            recipe_image.loadImage(null)
-        }
-
         //инициализируем наш PictureHelper
         mPicture = PictureHelper(this)
 
-        back_img_recipe.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
-
-
         // по клику на imageVIew appbar - открываем галлерею
-        recipe_image.setOnClickListener { mPicture.getPicture() }
+//        recipe_image.setOnClickListener { mPicture.getPicture() }
 
         //по клику на  floatImg открываем камеру
         floatImg.setOnClickListener {
+            val dialog = PhotoDialogFragment()
+                dialog.show(childFragmentManager,"PhotoDialogFragment")
             //запрашиваем права
-            getPermissions()
+//            getPermissions()
+
 
         }
 
@@ -100,6 +90,7 @@ class AddRecipeFragment : BaseFragment() {
             mViewModel.addFields(view, ingredientsViewList, linear_ingredients)
         }
 
+
         //публикуем рецепт
         publish_btn.setOnClickListener {
 
@@ -118,12 +109,11 @@ class AddRecipeFragment : BaseFragment() {
                     )
                 }
             }
-
-
+            mViewModel.getUri(imgUri!!)
             // по клику на кнопку опубликовать.  передаем наши данные введенные пользователем во viewModel
             mViewModel.publish(user = mUser, nameRecipe = name_recipe_input.text.toString(),
                 category = categories.selectedItem.toString(),  ingredients = ingredients,
-                recipeDificulty = recipe_difficulty.selectedItem.toString(), imageUri = imgUri,
+                recipeDificulty = recipe_difficulty.selectedItem.toString(),
                 coockingTime = coocking_time_text.text.toString(), instraction = instruction_input.text.toString(),
                 calories = calories.text.toString(), protein = protein.text.toString(),
                 fat = fat.text.toString(), carbohydrates = carbohydrates.text.toString())
@@ -149,27 +139,27 @@ class AddRecipeFragment : BaseFragment() {
     }
 
     //если requestCode соответствует , то рисуем картинку и отображаем наше фото на экране постинга
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == mPicture.CAMERA_TAKE_PICTURE_CODE) {
-            if (resultCode == RESULT_OK) {
-                imgUri = mPicture.imageUri
-
-                setImage(imgUri)
-
-
-                Log.d(TAG, imgUri?.path)
-            }
-        }else if (requestCode == mPicture.GET_PICTURE_CODE) {
-
-            if (resultCode == RESULT_OK) {
-                imgUri = data?.data
-                setImage(imgUri)
-                Log.d(TAG, imgUri?.path)
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == mPicture.CAMERA_TAKE_PICTURE_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                imgUri = mPicture.imageUri
+//
+//                setImage(imgUri)
+//
+//
+//                Log.d(TAG, imgUri?.path)
+//            }
+//        }else if (requestCode == mPicture.GET_PICTURE_CODE) {
+//
+//            if (resultCode == RESULT_OK) {
+//                imgUri = data?.data
+//                setImage(imgUri)
+//                Log.d(TAG, imgUri?.path)
+//            }
+//        }
+//    }
 
 
     //загружаем картинку в imageView
@@ -211,7 +201,11 @@ class AddRecipeFragment : BaseFragment() {
 
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        imgUri = (context as MainActivity).img
+        setImage(imgUri)
+    }
     //обработка ответа на  разрешении
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
@@ -236,21 +230,6 @@ class AddRecipeFragment : BaseFragment() {
             }
         }
     }
-
-
-    override fun onStart() {
-        super.onStart()
-        //скрываем NavigationBottom при входе во фрагмент
-        hideBottomNavigation()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //показываем NavigationBottom при выходе из фрагмента
-        showBottomNavigation()
-    }
-
-
     companion object {
         const val TAG = "AddRecipeFragment"
     }

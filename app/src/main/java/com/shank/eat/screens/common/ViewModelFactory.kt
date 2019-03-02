@@ -6,18 +6,16 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.shank.eat.screens.App
 import com.shank.eat.screens.btm_navigation_screens.add_recipe.AddRecipeViewModel
 import com.shank.eat.screens.btm_navigation_screens.home.HomeViewModel
-import com.shank.eat.screens.btm_navigation_screens.shoping_lists.ShopingListsViewModel
 import com.shank.eat.screens.btm_navigation_screens.home.comments.CommentsViewModel
 import com.shank.eat.screens.btm_navigation_screens.home.recipes.RecipeOpenViewModel
 import com.shank.eat.screens.btm_navigation_screens.profile.ProfileViewModel
 import com.shank.eat.screens.btm_navigation_screens.profile.favorite_recipes.FavoriteRecipesViewModel
-import com.shank.eat.screens.btm_navigation_screens.profile.favorite_recipes.Favorite_RecipesFragment
 import com.shank.eat.screens.btm_navigation_screens.profile.follow.FollowUsersViewModel
-import com.shank.eat.screens.btm_navigation_screens.profile.my_recipes.MyRecipesViewModel
+import com.shank.eat.screens.btm_navigation_screens.shoping_lists.ShopingListsViewModel
+import com.shank.eat.screens.btm_navigation_screens.shoping_lists.shoping_list_open.ShopingListOpenViewModel
 import com.shank.eat.screens.register_and_login_screens.forgot_pass.ForgotPasswordViewModel
 import com.shank.eat.screens.register_and_login_screens.login.LoginViewModel
 import com.shank.eat.screens.register_and_login_screens.register.RegisterViewModel
-import com.shank.eat.screens.btm_navigation_screens.shoping_lists.shoping_list_open.ShopingListOpenViewModel
 
 
 //в данном классе будем ссылаться на бд(в нашем случае firebase), остальные классы не будут знать,
@@ -51,8 +49,6 @@ class ViewModelFactory(private val app: App,
                 ShopingListsViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(ShopingListOpenViewModel::class.java) ->
                 ShopingListOpenViewModel(onFailureListener,recipesRepo,usersRepo) as T
-            modelClass.isAssignableFrom(MyRecipesViewModel::class.java) ->
-                MyRecipesViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(FavoriteRecipesViewModel::class.java) ->
                 FavoriteRecipesViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(FollowUsersViewModel::class.java) ->

@@ -21,7 +21,7 @@ class IngredientsRecipeAdapter(private val ingredients: List<String>?) : Recycle
 
         with(holder.view){
 
-            position_ingredients_text.text = "${position+1}."
+            position_ingredients_text.text = (position+1).toString()
             ingredients_text.text = ingredients!![position]
         }
     }

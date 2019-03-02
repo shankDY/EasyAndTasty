@@ -27,9 +27,6 @@ class FavoriteRecipesViewModel(onFailureListener: OnFailureListener,
         }
     }
 
-
-
-
     //считываем лайки юзеров
     fun getLikes(postId: String): LiveData<FeedPostLikes>? = loadedLikes[postId]
 

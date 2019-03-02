@@ -7,11 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.screens.btm_navigation_screens.home.HomeFragment
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.recyclerAnimatorOff
-import kotlinx.android.synthetic.main.favorite__recipes_fragment.*
+import kotlinx.android.synthetic.main.favorite_recipes_fragment.*
 
 class Favorite_RecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
 
@@ -21,7 +22,7 @@ class Favorite_RecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
         Log.d(HomeFragment.TAG, "onCreate")
-        return inflater.inflate(R.layout.favorite__recipes_fragment, parent, false)
+        return inflater.inflate(R.layout.favorite_recipes_fragment, parent, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,27 +30,20 @@ class Favorite_RecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
 
         //инициализация viewModel
         mViewModel = initViewModel()
-
-
         //инициализация recyclerAdapter
         mAdapter = FavoritesAdapter(this)
 
+        back_img.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         //подключение адаптера к recyclerView
         favoriteRecyclerView.adapter = mAdapter
-
-
         //отключаем анимацию отрисовки картинки
         recyclerAnimatorOff(favoriteRecyclerView)
-
         favoriteRecyclerView.layoutManager = LinearLayoutManager(context)
 
-
         mViewModel.favorites.observe(viewLifecycleOwnerLiveData.value!!, Observer{ it?.let{ mAdapter.updatePosts(it) } })
-
-
-
-
-
 
     }
 
@@ -65,11 +59,23 @@ class Favorite_RecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
 
     //переключатель лайк
     override fun toogleLike(postId: String) {
-
         Log.d(TAG, "toogleLike: $postId")
-
         mViewModel.toogleLike(postId)
     }
+
+
+    override fun onStart() {
+        super.onStart()
+        //скрываем NavigationBottom при входе во фрагмент
+        hideBottomNavigation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //показываем NavigationBottom при выходе из фрагмента
+        showBottomNavigation()
+    }
+
     companion object {
         const val TAG = "Favorite_RecipesFragment"
     }

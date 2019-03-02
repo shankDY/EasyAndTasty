@@ -81,7 +81,7 @@
                 android:layout_width="50dp"
                 android:padding="10dp"
                 android:clickable="true"
-                android:src="@drawable/ic_like"/>
+                android:src="@drawable/ic_like_inactive"/>
 
         <com.shank.eat.screens.common.CustomImageButton
                 android:id="@+id/comment_image"

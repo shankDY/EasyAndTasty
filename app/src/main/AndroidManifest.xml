@@ -22,10 +22,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            tools:ignore="GoogleAppIndexingWarning">
+            tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <!-- -->
-        <activity android:name=".screens.btm_navigation_screens.MainActivity">
+        <activity android:name=".screens.btm_navigation_screens.MainActivity"
+                  android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
