@@ -17,7 +17,7 @@ class SearchFragment : BaseFragment() {
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreate")
-        return inflater.inflate(R.layout.search_fragment, parent, false)
+        return inflater.inflate(R.layout.fragment_search, parent, false)
     }
 
 

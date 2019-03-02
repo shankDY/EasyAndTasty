@@ -11,8 +11,8 @@ import com.shank.eat.R
 import com.shank.eat.screens.btm_navigation_screens.MainActivity
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.coordinateBtnAndInputs
-import kotlinx.android.synthetic.main.progressbar.*
-import kotlinx.android.synthetic.main.register_fragment.*
+import kotlinx.android.synthetic.main.layout_progressbar.*
+import kotlinx.android.synthetic.main.fragment_register.*
 
 
 class RegisterFragment : BaseFragment(){
@@ -22,7 +22,7 @@ class RegisterFragment : BaseFragment(){
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreate")
-        return inflater.inflate(R.layout.register_fragment, parent, false)
+        return inflater.inflate(R.layout.fragment_register, parent, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

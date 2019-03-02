@@ -7,7 +7,7 @@
     <fragment android:id="@+id/nav_item_home"
               android:name="com.shank.eat.screens.btm_navigation_screens.home.HomeFragment"
               android:label="HomeFragment"
-              tools:layout="@layout/home_fragment">
+              tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_nav_item_home_to_recipeFragment"
                 app:destination="@id/recipeFragment"/>
 
@@ -18,22 +18,11 @@
 
 
     <fragment android:id="@+id/recipeFragment"
-              android:name="com.shank.eat.screens.btm_navigation_screens.home.recipes.RecipeOpenFragment"
-              android:label="recipe_fragment"
-              tools:layout="@layout/recipe_fragment">
-
-        <argument
-                android:name="recipeId"
-                app:argType="string"/>
-    </fragment>
+              android:name="com.shank.eat.screens.other_screens.recipes.RecipeFragment"
+              android:label="recipe_fragment"/>
 
     <fragment android:id="@+id/commentsFragment"
-              android:name="com.shank.eat.screens.btm_navigation_screens.home.comments.CommentsFragment"
+              android:name="com.shank.eat.screens.other_screens.comments.CommentsFragment"
               android:label="comments_fragment"
-              tools:layout="@layout/comments_fragment">
-
-        <argument
-                android:name="recipeId"
-                app:argType="string"/>
-    </fragment>
+              tools:layout="@layout/fragment_comments"/>
 </navigation>

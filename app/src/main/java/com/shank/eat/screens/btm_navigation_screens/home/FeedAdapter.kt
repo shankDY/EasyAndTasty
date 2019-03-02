@@ -13,7 +13,7 @@ import com.shank.eat.model.Recipe
 import com.shank.eat.screens.common.SimpleCallback
 import com.shank.eat.screens.common.loadImage
 import com.shank.eat.screens.common.loadUserPhoto
-import kotlinx.android.synthetic.main.feed_item.view.*
+import kotlinx.android.synthetic.main.items_feed.view.*
 
 //адаптер для постов
 class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
@@ -41,7 +41,7 @@ class FeedAdapter(private val listener: Listener) : RecyclerView.Adapter<FeedAda
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.feed_item, parent, false)
+                .inflate(R.layout.items_feed, parent, false)
         return ViewHolder(view)
     }
 

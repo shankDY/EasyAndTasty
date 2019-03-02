@@ -1,4 +1,4 @@
-package com.shank.eat.screens.btm_navigation_screens.profile
+package com.shank.eat.screens.other_screens.favorite_recipes
 
 import android.os.Bundle
 import android.support.v7.util.DiffUtil
@@ -17,7 +17,7 @@ import com.shank.eat.screens.common.loadUserPhoto
 import kotlinx.android.synthetic.main.items_feed.view.*
 
 //адаптер для постов
-class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyRecypeAdapter.ViewHolder>() {
+class FavoritesAdapter(private val listener: Listener) : RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     interface Listener{
 
@@ -64,8 +64,9 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
             val bundle = Bundle()
             bundle.putString("postId", post.id)
 
+            //переходим в recipe fragment
             post_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_profile_to_recipeOpenFragment, bundle)
+                findNavController().navigate(R.id.action_favorite_RecipesFragment_to_recipeOpenFragment, bundle)
             }
 
             //если лайков не, то прячим текст
@@ -104,7 +105,7 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
 
             //переходим в comments fragment
             comment_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_profile_to_commentsFragment2, bundle,options)
+                findNavController().navigate(R.id.action_favorite_RecipesFragment_to_commentsFragment2, bundle,options)
             }
 
         }

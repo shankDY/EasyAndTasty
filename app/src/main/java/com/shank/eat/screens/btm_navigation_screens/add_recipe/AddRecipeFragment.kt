@@ -3,7 +3,6 @@ package com.shank.eat.screens.btm_navigation_screens.add_recipe
 import android.Manifest
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -19,7 +18,7 @@ import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.PhotoDialogFragment
 import com.shank.eat.screens.common.PictureHelper
 import com.shank.eat.screens.common.loadImage
-import kotlinx.android.synthetic.main.add_recipe_fragment.*
+import kotlinx.android.synthetic.main.fragment_add_recipe.*
 import com.shank.eat.screens.btm_navigation_screens.MainActivity
 
 
@@ -38,7 +37,7 @@ class AddRecipeFragment : BaseFragment() {
 
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.add_recipe_fragment, parent, false)
+        return inflater.inflate(R.layout.fragment_add_recipe, parent, false)
     }
 
 
@@ -84,7 +83,7 @@ class AddRecipeFragment : BaseFragment() {
 
         // добавляем поле ингридиент
         add_ingredients_text.setOnClickListener {
-            val view :View = layoutInflater.inflate(R.layout.custom_ingredients_layout,null)
+            val view :View = layoutInflater.inflate(R.layout.layout_more_ingredients,null)
 
             //вызываем соответствующий метод во viewModel, который позволит добавить нам поле
             mViewModel.addFields(view, ingredientsViewList, linear_ingredients)

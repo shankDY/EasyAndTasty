@@ -6,13 +6,13 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.shank.eat.screens.App
 import com.shank.eat.screens.btm_navigation_screens.add_recipe.AddRecipeViewModel
 import com.shank.eat.screens.btm_navigation_screens.home.HomeViewModel
-import com.shank.eat.screens.btm_navigation_screens.home.comments.CommentsViewModel
-import com.shank.eat.screens.btm_navigation_screens.home.recipes.RecipeOpenViewModel
+import com.shank.eat.screens.other_screens.comments.CommentsViewModel
+import com.shank.eat.screens.other_screens.recipes.RecipeViewModel
 import com.shank.eat.screens.btm_navigation_screens.profile.ProfileViewModel
-import com.shank.eat.screens.btm_navigation_screens.profile.favorite_recipes.FavoriteRecipesViewModel
-import com.shank.eat.screens.btm_navigation_screens.profile.follow.FollowUsersViewModel
-import com.shank.eat.screens.btm_navigation_screens.shoping_lists.ShopingListsViewModel
-import com.shank.eat.screens.btm_navigation_screens.shoping_lists.shoping_list_open.ShopingListOpenViewModel
+import com.shank.eat.screens.other_screens.favorite_recipes.FavoriteRecipesViewModel
+import com.shank.eat.screens.other_screens.people.SearchPeopleViewModel
+import com.shank.eat.screens.btm_navigation_screens.products.ProductsViewModel
+import com.shank.eat.screens.btm_navigation_screens.products.shoping_list.ShopingListOpenViewModel
 import com.shank.eat.screens.register_and_login_screens.forgot_pass.ForgotPasswordViewModel
 import com.shank.eat.screens.register_and_login_screens.login.LoginViewModel
 import com.shank.eat.screens.register_and_login_screens.register.RegisterViewModel
@@ -41,18 +41,18 @@ class ViewModelFactory(private val app: App,
                 AddRecipeViewModel(commonViewModel,app,onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) ->
                 HomeViewModel(onFailureListener,recipesRepo,usersRepo) as T
-            modelClass.isAssignableFrom(RecipeOpenViewModel::class.java) ->
-                RecipeOpenViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(RecipeViewModel::class.java) ->
+                RecipeViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(CommentsViewModel::class.java) ->
                 CommentsViewModel(recipesRepo,usersRepo,onFailureListener,app) as T
-            modelClass.isAssignableFrom(ShopingListsViewModel::class.java) ->
-                ShopingListsViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(ProductsViewModel::class.java) ->
+                ProductsViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(ShopingListOpenViewModel::class.java) ->
                 ShopingListOpenViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(FavoriteRecipesViewModel::class.java) ->
                 FavoriteRecipesViewModel(onFailureListener,recipesRepo,usersRepo) as T
-            modelClass.isAssignableFrom(FollowUsersViewModel::class.java) ->
-                FollowUsersViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(SearchPeopleViewModel::class.java) ->
+                SearchPeopleViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(ProfileViewModel::class.java) ->
                 ProfileViewModel(onFailureListener,recipesRepo,usersRepo) as T
             else -> error("Unknow view model class $modelClass")

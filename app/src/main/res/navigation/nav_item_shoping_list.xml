@@ -5,21 +5,16 @@
             app:startDestination="@+id/nav_item_shoping_list">
 
     <fragment android:id="@+id/nav_item_shoping_list"
-              android:name="com.shank.eat.screens.btm_navigation_screens.shoping_lists.ShopingListsFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.products.ProductsFragment"
               android:label="ShopingListFragment"
-              tools:layout="@layout/shoping_list_fragment">
+              tools:layout="@layout/fragment_products">
         <action android:id="@+id/action_nav_item_shoping_list_to_shopingListOpenFragment"
                 app:destination="@id/shopingListOpenFragment"/>
     </fragment>
 
     <fragment android:id="@+id/shopingListOpenFragment"
-              android:name="com.shank.eat.screens.btm_navigation_screens.shoping_lists.shoping_list_open.ShopingListOpenFragment"
+              android:name="com.shank.eat.screens.btm_navigation_screens.products.shoping_list.ShopingListOpenFragment"
               android:label="ShopingListOpenFragment"
-              tools:layout="@layout/shoping_list_open_fragment">
-
-        <argument
-                android:name="shoping_list_ID"
-                app:argType="string"/>
-    </fragment>
+              tools:layout="@layout/fragment_shoping_list"/>
 
 </navigation>

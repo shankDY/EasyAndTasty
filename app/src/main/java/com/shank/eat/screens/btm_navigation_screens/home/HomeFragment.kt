@@ -8,12 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.shank.eat.R
-import com.shank.eat.common.AuthManager
 import com.shank.eat.common.firebase.FirebaseAuthManager
 import com.shank.eat.data.firebase.common.auth
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.recyclerAnimatorOff
-import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 
@@ -26,7 +25,7 @@ class HomeFragment : BaseFragment(), FeedAdapter.Listener{
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreate")
-        return inflater.inflate(R.layout.home_fragment, parent, false)
+        return inflater.inflate(R.layout.fragment_home, parent, false)
     }
 
 

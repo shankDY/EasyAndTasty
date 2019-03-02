@@ -13,9 +13,7 @@ import com.shank.eat.R
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.loadUserPhoto
 import com.shank.eat.screens.common.recyclerAnimatorOff
-import kotlinx.android.synthetic.main.profile_fragment.*
-import android.graphics.PorterDuff
-import android.widget.TextView
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseFragment(), MyRecypeAdapter.Listener{
 
@@ -25,7 +23,7 @@ class ProfileFragment : BaseFragment(), MyRecypeAdapter.Listener{
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreate")
-        return inflater.inflate(R.layout.profile_fragment, parent, false)
+        return inflater.inflate(R.layout.fragment_profile, parent, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
