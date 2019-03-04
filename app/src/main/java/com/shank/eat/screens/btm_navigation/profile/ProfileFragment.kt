@@ -75,7 +75,7 @@ class ProfileFragment : BaseFragment(), MyRecypeAdapter.Listener{
             override fun onTabSelected(tab: TabLayout.Tab) {
                 Log.d(TAG,tab.position.toString())
                 when(tab.position){
-                    1 -> findNavController().navigate(R.id.action_nav_item_profile_to_favorite_RecipesFragment)
+                    1 -> findNavController().navigate(R.id.action_nav_item_profile_to_favoriteRecipesFragment)
                     2 -> findNavController().navigate(R.id.action_nav_item_profile_to_followUsersFragment)
                 }
             }

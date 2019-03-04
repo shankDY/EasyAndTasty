@@ -65,7 +65,7 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
             bundle.putString("postId", post.id)
 
             post_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_profile_to_recipeOpenFragment, bundle)
+                findNavController().navigate(R.id.action_nav_item_profile_to_recipeFragment2, bundle)
             }
 
             //если лайков не, то прячим текст
@@ -99,17 +99,13 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
                 .setExitAnim(R.animator.slide_up)
                 //данные анимации срабатывают при выталкивании фрагмента из стека(по клику на кнопку назад(системную))
                 .setPopExitAnim(R.animator.slide_up)
-
                 .build()
 
             //переходим в comments fragment
             comment_image.setOnClickListener {
                 findNavController().navigate(R.id.action_nav_item_profile_to_commentsFragment2, bundle,options)
             }
-
         }
-
-
     }
 
     //количество постов

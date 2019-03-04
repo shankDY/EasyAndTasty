@@ -21,7 +21,7 @@ class FavoriteRecipesViewModel(onFailureListener: OnFailureListener,
     init {
 
         //загружает feedposts и сортирует их по дате добавления
-        favorites = recipesRepo.getFavorites(uid!!).map {
+        favorites = recipesRepo.getFavoriteRecipes(uid!!).map {
             //сортируем посты по дате добавления
             it.sortedByDescending { it.timestampDate() }
         }

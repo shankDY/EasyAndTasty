@@ -9,19 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
-import com.shank.eat.screens.btm_navigation.home.HomeFragment
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.recyclerAnimatorOff
 import kotlinx.android.synthetic.main.fragment_favorite_recipes.*
 
-class Favorite_RecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
+class FavoriteRecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
 
     private lateinit var mViewModel: FavoriteRecipesViewModel
     private lateinit var mAdapter: FavoritesAdapter // recyclerView adapter для постов юзеров
 
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
-        Log.d(HomeFragment.TAG, "onCreate")
+        Log.d(TAG, "onCreate")
         return inflater.inflate(R.layout.fragment_favorite_recipes, parent, false)
     }
 
@@ -43,7 +42,11 @@ class Favorite_RecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
         recyclerAnimatorOff(favoriteRecyclerView)
         favoriteRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        mViewModel.favorites.observe(viewLifecycleOwnerLiveData.value!!, Observer{ it?.let{ mAdapter.updatePosts(it) } })
+        mViewModel.favorites.observe(viewLifecycleOwnerLiveData.value!!, Observer{
+            it?.let{
+                mAdapter.updatePosts(it)
+            }
+        })
 
     }
 
@@ -63,21 +66,8 @@ class Favorite_RecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
         mViewModel.toogleLike(postId)
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        //скрываем NavigationBottom при входе во фрагмент
-        hideBottomNavigation()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //показываем NavigationBottom при выходе из фрагмента
-        showBottomNavigation()
-    }
-
     companion object {
-        const val TAG = "Favorite_RecipesFragment"
+        const val TAG = "FavoriteRecipesFragment"
     }
 
 }

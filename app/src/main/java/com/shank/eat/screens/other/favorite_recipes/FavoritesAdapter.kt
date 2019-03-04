@@ -62,11 +62,11 @@ class FavoritesAdapter(private val listener: Listener) : RecyclerView.Adapter<Fa
             name_recipe.text = post.nameRecipe
 
             val bundle = Bundle()
-            bundle.putString("postId", post.id)
+            bundle.putString("postId", posts[position].id)
 
             //переходим в recipe fragment
             post_image.setOnClickListener {
-                findNavController().navigate(R.id.action_favorite_RecipesFragment_to_recipeOpenFragment, bundle)
+                findNavController().navigate(R.id.action_favoriteRecipesFragment_to_favoriteRecipeFragment, bundle)
             }
 
             //если лайков не, то прячим текст
@@ -100,12 +100,11 @@ class FavoritesAdapter(private val listener: Listener) : RecyclerView.Adapter<Fa
                 .setExitAnim(R.animator.slide_up)
                 //данные анимации срабатывают при выталкивании фрагмента из стека(по клику на кнопку назад(системную))
                 .setPopExitAnim(R.animator.slide_up)
-
                 .build()
 
             //переходим в comments fragment
             comment_image.setOnClickListener {
-                findNavController().navigate(R.id.action_favorite_RecipesFragment_to_commentsFragment2, bundle,options)
+                findNavController().navigate(R.id.action_favoriteRecipesFragment_to_commentsFragment2, bundle,options)
             }
 
         }

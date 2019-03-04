@@ -10,19 +10,17 @@
               tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_nav_item_home_to_recipeFragment"
                 app:destination="@id/recipeFragment"/>
-
         <action android:id="@+id/action_nav_item_home_to_commentsFragment"
                 app:destination="@id/commentsFragment"/>
     </fragment>
 
-
-
     <fragment android:id="@+id/recipeFragment"
               android:name="com.shank.eat.screens.other.recipes.RecipeFragment"
-              android:label="recipe_fragment"/>
+              android:label="RecipeFragment"/>
 
     <fragment android:id="@+id/commentsFragment"
               android:name="com.shank.eat.screens.other.comments.CommentsFragment"
-              android:label="comments_fragment"
-              tools:layout="@layout/fragment_comments"/>
+              android:label="CommentsFragment"/>
+
+
 </navigation>

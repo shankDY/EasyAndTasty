@@ -54,6 +54,23 @@ class FirebaseRecipesRepository : RecipesRepository {
             it.children.map { it.asRecipe()!! }
         }
 
+    //добавляем рецепт в избранное
+    override fun addFavorites(uid: String?, recipe: Recipe?) =
+        database.child("favorite-recipes").child(uid!!).push().setValue(recipe).toUnit()
+
+    //получаем список любимых рецептов юзера
+    override fun getFavoriteRecipes(uid:String): LiveData<List<Recipe>> =
+        FirebaseLiveData(database.child("favorite-recipes").child(uid)).map {
+            it.children.map {
+                it.asRecipe()!!
+            }
+        }
+
+    //получаем конкретный рецепт в ноде любимых рецептов пользователя
+    override fun getFavoriteRecipe(uid:String, postId: String): LiveData<Recipe> =
+        FirebaseLiveData(database.child("favorite-recipes").child(uid).child(postId)).map {
+            it.asRecipe()!!
+        }
 
     //копируем посты юзеров на которые подписался
     override fun copyFeedPosts(postsAuthorUid: String, uid: String): Task<Unit> =
@@ -170,19 +187,6 @@ class FirebaseRecipesRepository : RecipesRepository {
             //получили список коментиков и замапили его
             it.children.map {
                 it.asComment()!!
-            }
-        }
-
-
-    //добавляем рецепт в избранное
-    override fun addFavorites(uid: String?, recipe: Recipe?) =
-        database.child("favorite-recipes").child(uid!!).push().setValue(recipe).toUnit()
-
-    //получаем список любимых рецептов юзера
-    override fun getFavorites(uid:String): LiveData<List<Recipe>> =
-        FirebaseLiveData(database.child("favorite-recipes").child(uid)).map {
-            it.children.map {
-                it.asRecipe()!!
             }
         }
 
