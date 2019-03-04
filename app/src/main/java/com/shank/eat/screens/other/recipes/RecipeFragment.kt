@@ -25,6 +25,7 @@ class RecipeFragment : BaseFragment() {
     private var recipeName:String? = null
     private var calories: String? = null
     private var mRecipe: Recipe? = null
+    private var postsAuthorUid: String? = null
 
     override fun provideYourFragmentView(inflater: LayoutInflater, parent: ViewGroup?,
                                          savedInstanceState: Bundle?): View {
@@ -62,6 +63,7 @@ class RecipeFragment : BaseFragment() {
             fat_text.text = recipe?.fat
             carbohydrates_text.text = recipe?.carbohydrates
             instruction_text.text = recipe?.instruction
+            postsAuthorUid = recipe?.uid
 
             //данные для списка покупок
             ingredients.addAll(recipe?.ingredients!!)
@@ -84,7 +86,8 @@ class RecipeFragment : BaseFragment() {
         }
 
         floatImg_favorite.setOnClickListener {
-            mViewModel.addFavorites(mRecipe)
+            if (postId!!.isNotEmpty() && postsAuthorUid!!.isNotEmpty())
+                mViewModel.addFavorites(postId,postsAuthorUid!!)
         }
 
     }

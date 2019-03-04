@@ -16,12 +16,13 @@ class RecipeViewModel(onFailureListener: OnFailureListener,
     lateinit var recipe: LiveData<Recipe>
     // id поста
     private lateinit var postId: String
+    private val uid = usersRepo.currentUid()
 
     fun init(postId: String) {
         if (!this::postId.isInitialized) {
             this.postId = postId
             //иннициализация списка комеентариев
-            this.recipe = recipesRepo.getFeedPost(usersRepo.currentUid()!!,postId)
+            this.recipe = recipesRepo.getFeedPost(uid!!,postId)
         }
     }
 
@@ -34,7 +35,7 @@ class RecipeViewModel(onFailureListener: OnFailureListener,
     ) {
         if (nameRecipe!!.isNotEmpty() && calories!!.isNotEmpty() && ingredients.isNotEmpty()){
 
-            recipesRepo.createShopingList(usersRepo.currentUid()!!,mkShopingList(nameRecipe,calories, ingredients))
+            recipesRepo.createShopingList(uid!!,mkShopingList(nameRecipe,calories, ingredients))
                 .addOnFailureListener(onFailureListener)
 
         }
@@ -47,7 +48,7 @@ class RecipeViewModel(onFailureListener: OnFailureListener,
                 ingredients = ingredients
             )
 
-    fun addFavorites(mRecipe: Recipe?) {
-        recipesRepo.addFavorites(usersRepo.currentUid(),mRecipe)
+    fun addFavorites(postId: String, postsAuthorUid: String) {
+        recipesRepo.addFavorites(uid = uid!!, postId = postId, postsAuthorUid = postsAuthorUid)
     }
 }

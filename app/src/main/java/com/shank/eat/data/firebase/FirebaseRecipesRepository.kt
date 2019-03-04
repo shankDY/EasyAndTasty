@@ -23,13 +23,9 @@ import com.shank.eat.screens.common.loadImage
 
 class FirebaseRecipesRepository : RecipesRepository {
 
-
     //создаем рецепт
-    override fun createRecipe(uid: String, recipe: Recipe): Task<Unit> {
-        val reference = database.child("users-recipes").child(uid).push()
-        return reference.setValue(recipe).toUnit()
-    }
-
+    override fun createRecipe(uid: String, recipe: Recipe): Task<Unit>  =
+        database.child("users-recipes").child(uid).push().setValue(recipe).toUnit()
 
     //получаем рецепты юзеров
     override fun getFeedPosts(uid: String): LiveData<List<Recipe>> =
@@ -55,8 +51,23 @@ class FirebaseRecipesRepository : RecipesRepository {
         }
 
     //добавляем рецепт в избранное
-    override fun addFavorites(uid: String?, recipe: Recipe?) =
-        database.child("favorite-recipes").child(uid!!).push().setValue(recipe).toUnit()
+//    override fun addFavorites(uid: String?, recipe: Recipe?) =
+//        database.child("favorite-recipes").child(uid!!).push().setValue(recipe).toUnit()
+
+    override fun addFavorites(uid: String, postId: String, postsAuthorUid: String) : Task<Unit> =
+        task { taskSource ->
+            //вычитаем конкретный пост юзеров по их uid и postId
+            database.child("users-recipes").child(postsAuthorUid).child(postId)
+                .addListenerForSingleValueEvent(ValueEventListenerAdapter {
+                    //карта, которая содержит пост юзера
+                    val post = it.children.map { it.key to it.value }.toMap()
+
+                    //вычитанный пост кладем в ноду favorite-recipes
+                    database.child("favorite-recipes").child(uid).child(postId).updateChildren(post)
+                        .toUnit()
+                        .addOnCompleteListener(TaskSourceOnCompleteListener(taskSource))
+                })
+        }
 
     //получаем список любимых рецептов юзера
     override fun getFavoriteRecipes(uid:String): LiveData<List<Recipe>> =

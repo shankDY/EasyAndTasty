@@ -41,7 +41,7 @@ interface RecipesRepository {
     //удаляем посты юзера, от которого отписались
     fun deleteFeedPosts(postsAuthorUid: String, uid: String): Task<Unit>
     //добавляем рецепт в любимые рецепты
-    fun addFavorites(uid: String?, recipe: Recipe?):Task<Unit>
+    fun addFavorites(uid: String, postId: String, postsAuthorUid: String):Task<Unit>
     //получаем список любимых рецептов юзера
     fun getFavoriteRecipes(uid: String): LiveData<List<Recipe>>
     //получаем конкретный рецепт в ноде любимых рецептов пользователя

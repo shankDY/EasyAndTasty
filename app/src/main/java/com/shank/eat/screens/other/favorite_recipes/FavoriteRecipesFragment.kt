@@ -59,7 +59,6 @@ class FavoriteRecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
             } })
         }
     }
-
     //переключатель лайк
     override fun toogleLike(postId: String) {
         Log.d(TAG, "toogleLike: $postId")
@@ -69,5 +68,4 @@ class FavoriteRecipesFragment : BaseFragment(), FavoritesAdapter.Listener {
     companion object {
         const val TAG = "FavoriteRecipesFragment"
     }
-
 }
