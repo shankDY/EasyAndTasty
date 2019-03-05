@@ -234,5 +234,4 @@ class FirebaseRecipesRepository : RecipesRepository {
     // где id списка - ключ полученный из бд.
     fun DataSnapshot.asShopingList(): ShopingList? =
             getValue(ShopingList::class.java)?.copy(id = key!!)
-
 }

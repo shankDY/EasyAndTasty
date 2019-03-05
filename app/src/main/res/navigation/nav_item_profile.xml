@@ -9,44 +9,61 @@
               android:name="com.shank.eat.screens.btm_navigation.profile.ProfileFragment"
               android:label="ProfileFragment"
               tools:layout="@layout/fragment_profile">
-        <action android:id="@+id/action_nav_item_profile_to_followUsersFragment"
-                app:destination="@id/followUsersFragment"/>
-        <action android:id="@+id/action_nav_item_profile_to_recipeFragment2"
-                app:destination="@id/recipeFragment2"/>
-        <action android:id="@+id/action_nav_item_profile_to_commentsFragment2"
-                app:destination="@id/commentsFragment2"/>
-        <action android:id="@+id/action_nav_item_profile_to_favoriteRecipesFragment"
-                app:destination="@id/favoriteRecipesFragment"/>
+        <action android:id="@+id/action_nav_item_profile_to_favorite"
+                app:destination="@id/favorite"/>
+        <action android:id="@+id/action_nav_item_profile_to_seach_people"
+                app:destination="@id/seach_people"/>
+        <action android:id="@+id/action_nav_item_profile_to_my_recipes"
+                app:destination="@id/my_recipes"/>
     </fragment>
 
-    <fragment android:id="@+id/followUsersFragment"
-              android:name="com.shank.eat.screens.other.people.SearchPeopleFragment"
-              android:label="FollowUsersFragment"
-              tools:layout="@layout/fragment_reseach_users"/>
+    <navigation android:id="@+id/favorite"
+                app:startDestination="@id/favoriteRecipesFragment">
+        <fragment android:id="@+id/favoriteRecipesFragment"
+                      android:name="com.shank.eat.screens.other.favorite_recipes.FavoriteRecipesFragment"
+                      android:label="FavoriteRecipesFragment"
+                      tools:layout="@layout/fragment_favorite_recipes">
+            <action android:id="@+id/action_favoriteRecipesFragment_to_favoriteRecipeFragment"
+                    app:destination="@id/favoriteRecipeFragment"/>
+            <action android:id="@+id/action_favoriteRecipesFragment_to_commentsFragment2"
+                    app:destination="@id/commentsFragment2"/>
+        </fragment>
+        <fragment android:id="@+id/favoriteRecipeFragment"
+                  android:name="com.shank.eat.screens.other.favorite_recipes.recipe.FavoriteRecipeFragment"
+                  android:label="FavoriteRecipeFragment"
+                  tools:layout="@layout/fragment_recipe"/>
+        <fragment android:id="@+id/commentsFragment2"
+                  android:name="com.shank.eat.screens.other.comments.CommentsFragment"
+                  android:label="CommentsFragment"
+                  tools:layout="@layout/fragment_comments"/>
+    </navigation>
+    <navigation android:id="@+id/seach_people"
+                app:startDestination="@id/followUsersFragment">
 
-    <fragment android:id="@+id/recipeFragment2"
-              android:name="com.shank.eat.screens.other.recipes.RecipeFragment"
-              android:label="RecipeFragment"
-              tools:layout="@layout/fragment_recipe"/>
-
-    <fragment android:id="@+id/commentsFragment2"
-              android:name="com.shank.eat.screens.other.comments.CommentsFragment"
-              android:label="CommentsFragment"
-              tools:layout="@layout/fragment_comments"/>
-
-    <fragment android:id="@+id/favoriteRecipesFragment"
-              android:name="com.shank.eat.screens.other.favorite_recipes.FavoriteRecipesFragment"
-              android:label="FavoriteRecipesFragment"
-              tools:layout="@layout/fragment_favorite_recipes">
-        <action android:id="@+id/action_favoriteRecipesFragment_to_commentsFragment2"
-                app:destination="@id/commentsFragment2"/>
-        <action android:id="@+id/action_favoriteRecipesFragment_to_favoriteRecipeFragment"
-                app:destination="@id/favoriteRecipeFragment"/>
-    </fragment>
-    <fragment android:id="@+id/favoriteRecipeFragment"
-              android:name="com.shank.eat.screens.other.favorite_recipes.recipe.FavoriteRecipeFragment"
-              android:label="FavoriteRecipeFragment"
-              tools:layout="@layout/fragment_recipe"/>
+        <fragment android:id="@+id/followUsersFragment"
+                      android:name="com.shank.eat.screens.other.people.SearchPeopleFragment"
+                      android:label="FollowUsersFragment"
+                      tools:layout="@layout/fragment_reseach_users"/>
+    </navigation>
+    <navigation android:id="@+id/my_recipes"
+                app:startDestination="@id/myRecipeFragment">
+        <fragment android:id="@+id/myRecipeFragment"
+                  android:name="com.shank.eat.screens.other.my_recipes.MyRecipeFragment"
+                  android:label="MyRecipeFragment"
+                  tools:layout="@layout/fragment_my_recipes">
+            <action android:id="@+id/action_myRecipeFragment_to_commentsFragment3"
+                    app:destination="@id/commentsFragment3"/>
+            <action android:id="@+id/action_myRecipeFragment_to_recipeFragment2" app:destination="@id/recipeFragment2"/>
+        </fragment>
+        <fragment android:id="@+id/commentsFragment3"
+                  android:name="com.shank.eat.screens.other.comments.CommentsFragment"
+                  android:label="CommentsFragment"
+                  tools:layout="@layout/fragment_comments"/>
+        <fragment android:id="@+id/recipeFragment2"
+                  android:name="com.shank.eat.screens.other.recipes.RecipeFragment"
+                  android:label="RecipeFragment"
+                  tools:layout="@layout/fragment_recipe"/>
+    </navigation>
 
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.shank.eat.screens.btm_navigation.profile
+package com.shank.eat.screens.other.my_recipes
 
 import android.os.Bundle
 import android.support.v7.util.DiffUtil
@@ -65,7 +65,7 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
             bundle.putString("postId", post.id)
 
             post_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_profile_to_recipeFragment2, bundle)
+                findNavController().navigate(R.id.action_myRecipeFragment_to_recipeFragment2, bundle)
             }
 
             //если лайков не, то прячим текст
@@ -103,7 +103,7 @@ class MyRecypeAdapter(private val listener: Listener) : RecyclerView.Adapter<MyR
 
             //переходим в comments fragment
             comment_image.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_item_profile_to_commentsFragment2, bundle,options)
+                findNavController().navigate(R.id.action_myRecipeFragment_to_commentsFragment3, bundle,options)
             }
         }
     }

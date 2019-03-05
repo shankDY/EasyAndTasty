@@ -13,6 +13,7 @@ import com.shank.eat.model.Recipe
 import com.shank.eat.screens.btm_navigation.add_recipe.AddRecipeFragment
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.loadImage
+import com.shank.eat.screens.common.showToast
 import kotlinx.android.synthetic.main.fragment_recipe.*
 
 
@@ -88,6 +89,9 @@ class RecipeFragment : BaseFragment() {
         floatImg_favorite.setOnClickListener {
             if (postId!!.isNotEmpty() && postsAuthorUid!!.isNotEmpty())
                 mViewModel.addFavorites(postId,postsAuthorUid!!)
+            else{
+                Log.d(TAG, "PostId or postsAuthorUid is Empty")
+            }
         }
 
     }
@@ -119,7 +123,6 @@ class RecipeFragment : BaseFragment() {
 
 
     companion object {
-
         const val TAG = "RecipeFragment"
     }
 

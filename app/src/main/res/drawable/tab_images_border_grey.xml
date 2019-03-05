@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- делаем такой импровизированный нижний тулбар. -1 означает  не показывать данные границы. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="-1dp"
+    android:insetRight="-1dp">
+    <shape >
+        <stroke android:color="@color/grey" android:width="1dp"/>
+    </shape>
+
+
+</inset>

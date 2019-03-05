@@ -89,4 +89,5 @@
     <string name="addPicture">Добавить картинку</string>
     <string name="take_picture">Выбрать фото</string>
     <string name="take_photo">Сделать снимок</string>
+    <string name="my_recipe">Мои рецепты</string>
 </resources>
