@@ -162,7 +162,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Избранное"/>
+                            android:text="@string/favorite"/>
                     <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -172,7 +172,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Окунись в мир любимых рецептов"
+                            android:text="@string/favorite_text"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
 
@@ -201,7 +201,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Мои рецепты"/>
+                            android:text="@string/my_recipe"/>
                     <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -211,7 +211,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Вспомни и прослезись"
+                            android:text="@string/my_recipe_text"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
 
@@ -248,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Добавить друга"/>
+                            android:text="@string/search_people"/>
                     <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -258,7 +258,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Ищи, знакомься, вдохновдляйся"
+                            android:text="@string/search_people_text"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
 
@@ -289,7 +289,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Настройки"
+                            android:text="@string/setting"
                             android:textStyle="bold" />
 
                     <View
@@ -303,7 +303,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Почувствуй себя богом"
+                            android:text="@string/setting_text"
                             android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -340,7 +340,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Изменить профиль"/>
+                            android:text="@string/edit_profile"/>
                     <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -350,7 +350,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Измени свою судьбу"
+                            android:text="@string/edit_profile_text"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
 

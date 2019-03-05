@@ -90,4 +90,11 @@
     <string name="take_picture">Выбрать фото</string>
     <string name="take_photo">Сделать снимок</string>
     <string name="my_recipe">Мои рецепты</string>
+    <string name="favorite_text">Посмотреть любимые рецепты</string>
+    <string name="my_recipe_text">Посмотреть свои рецепты</string>
+    <string name="search_people">Найти друзей</string>
+    <string name="search_people_text">Находи, знакомься, вдохновляйся</string>
+    <string name="setting">Настройки</string>
+    <string name="setting_text">Открыть настройки приложения</string>
+    <string name="edit_profile_text">Создай себя</string>
 </resources>

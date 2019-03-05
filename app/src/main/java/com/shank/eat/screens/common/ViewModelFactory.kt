@@ -22,6 +22,7 @@ import com.shank.eat.screens.register_and_login_screens.register.RegisterViewMod
 
 //в данном классе будем ссылаться на бд(в нашем случае firebase), остальные классы не будут знать,
 // какую бд мы используем
+@Suppress("UNCHECKED_CAST")
 class ViewModelFactory(private val app: App,
                        private val commonViewModel: CommonViewModel,
                        private val onFailureListener: OnFailureListener) : ViewModelProvider.Factory {
