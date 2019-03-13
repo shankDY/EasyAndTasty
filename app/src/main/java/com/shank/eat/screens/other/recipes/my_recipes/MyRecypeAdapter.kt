@@ -1,4 +1,4 @@
-package com.shank.eat.screens.other.my_recipes
+package com.shank.eat.screens.other.recipes.my_recipes
 
 import android.os.Bundle
 import android.support.v7.util.DiffUtil

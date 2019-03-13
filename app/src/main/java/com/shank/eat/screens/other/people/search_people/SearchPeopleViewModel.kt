@@ -1,4 +1,4 @@
-package com.shank.eat.screens.other.people
+package com.shank.eat.screens.other.people.search_people
 
 import android.arch.lifecycle.LiveData
 import com.google.android.gms.tasks.OnFailureListener

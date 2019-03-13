@@ -1,4 +1,4 @@
-package com.shank.eat.screens.other.my_recipes
+package com.shank.eat.screens.other.recipes.my_recipes
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.recyclerAnimatorOff
+import com.shank.eat.screens.other.my_recipes.MyRecipesViewModel
 import kotlinx.android.synthetic.main.fragment_my_recipes.*
 
-class MyRecipeFragment : BaseFragment(), MyRecypeAdapter.Listener{
+class MyRecipeFragment : BaseFragment(), MyRecypeAdapter.Listener {
 
     private lateinit var mAdapter: MyRecypeAdapter
     private lateinit var mViewModel: MyRecipesViewModel
@@ -41,6 +43,10 @@ class MyRecipeFragment : BaseFragment(), MyRecypeAdapter.Listener{
             mAdapter.updatePosts(it)
         }})
 
+        //кнопка назад
+        back_img.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 

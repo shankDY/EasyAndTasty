@@ -1,10 +1,12 @@
-package com.shank.eat.screens.other.people
+package com.shank.eat.screens.other.people.search_people
 
+import android.os.Bundle
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.User
 import com.shank.eat.screens.common.SimpleCallback
@@ -41,6 +43,13 @@ class SearchPeopleAdapter(private val listener: Listener)
             //передаем активити наши клики по кнопкам
             follow_btn.setOnClickListener { listener.follow(user.uid) }
             unfollow_btn.setOnClickListener { listener.unfollow(user.uid) }
+
+            val bundle = Bundle()
+            bundle.putString("uid",user.uid)
+
+            user_card.setOnClickListener {
+                findNavController().navigate(R.id.action_followUsersFragment_to_sideProfileViewFragment,bundle)
+            }
 
             //наша карта(если следуем за юзером, то true)
             val follows = mFollows[user.uid] ?: false

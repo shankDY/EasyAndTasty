@@ -2,7 +2,6 @@ package com.shank.eat.screens.btm_navigation.profile
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.loadUserPhoto
-import com.shank.eat.screens.common.recyclerAnimatorOff
-import com.shank.eat.screens.other.my_recipes.MyRecypeAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseFragment(){

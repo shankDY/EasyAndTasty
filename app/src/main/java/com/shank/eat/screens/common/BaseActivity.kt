@@ -20,18 +20,6 @@ abstract class BaseActivity: AppCompatActivity() {
 
     }
 
-
-    fun hideBottomNavigationView(view: BottomNavigationView, switcher: Boolean = true) {
-        view.clearAnimation()
-        if (!switcher){
-            view.animate().translationY(0f).duration = 300
-
-        }else{
-            view.animate().translationY(view.height.toFloat()).duration = 300
-        }
-    }
-
-
     //переход в логинАктивити
     fun goToLogin() {
         startActivity(Intent(this, HostLoginActivity::class.java))

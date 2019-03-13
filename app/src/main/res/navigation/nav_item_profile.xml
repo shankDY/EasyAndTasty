@@ -41,14 +41,21 @@
                 app:startDestination="@id/followUsersFragment">
 
         <fragment android:id="@+id/followUsersFragment"
-                      android:name="com.shank.eat.screens.other.people.SearchPeopleFragment"
+                      android:name="com.shank.eat.screens.other.people.search_people.SearchPeopleFragment"
                       android:label="FollowUsersFragment"
-                      tools:layout="@layout/fragment_reseach_users"/>
+                      tools:layout="@layout/fragment_reseach_users">
+            <action android:id="@+id/action_followUsersFragment_to_sideProfileViewFragment"
+                    app:destination="@id/sideProfileViewFragment"/>
+        </fragment>
+        <fragment android:id="@+id/sideProfileViewFragment"
+                  android:name="com.shank.eat.screens.other.people.side_profile_view.SideProfileViewFragment"
+                  android:label="SideProfileViewFragment"
+                  tools:layout="@layout/fragment_side_profile_view"/>
     </navigation>
     <navigation android:id="@+id/my_recipes"
                 app:startDestination="@id/myRecipeFragment">
         <fragment android:id="@+id/myRecipeFragment"
-                  android:name="com.shank.eat.screens.other.my_recipes.MyRecipeFragment"
+                  android:name="com.shank.eat.screens.other.recipes.my_recipes.MyRecipeFragment"
                   android:label="MyRecipeFragment"
                   tools:layout="@layout/fragment_my_recipes">
             <action android:id="@+id/action_myRecipeFragment_to_commentsFragment3"

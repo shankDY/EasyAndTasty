@@ -1,4 +1,4 @@
-package com.shank.eat.screens.other.people
+package com.shank.eat.screens.other.people.search_people
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -13,7 +13,8 @@ import com.shank.eat.model.User
 import com.shank.eat.screens.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_reseach_users.*
 
-class SearchPeopleFragment : BaseFragment(), SearchPeopleAdapter.Listener {
+class SearchPeopleFragment : BaseFragment(),
+    SearchPeopleAdapter.Listener {
 
     private lateinit var mUser: User
     private lateinit var mAdapter: SearchPeopleAdapter

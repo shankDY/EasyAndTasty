@@ -47,8 +47,4 @@ class FavoriteRecipeViewModel(onFailureListener: OnFailureListener,
                 calories = calories,
                 ingredients = ingredients
             )
-
-    fun deleteFavorites(postId: String) {
-        TODO()
-    }
 }
