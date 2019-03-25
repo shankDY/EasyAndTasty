@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.util.Log
 import com.shank.eat.R
-import kotlinx.android.synthetic.main.fragment_photo_dialog.view.*
+import kotlinx.android.synthetic.main.dialog_photo_change.view.*
 
 class PhotoDialogFragment : DialogFragment() {
     private var listener: OnFragmentInteractionListener? = null
@@ -24,7 +24,7 @@ class PhotoDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val view = activity!!.layoutInflater.inflate(R.layout.fragment_photo_dialog,null)
+        val view = activity!!.layoutInflater.inflate(R.layout.dialog_photo_change,null)
         view.buttonPhoto.setOnClickListener {
             mPicture.takeCameraPicture()
         }
@@ -50,7 +50,7 @@ class PhotoDialogFragment : DialogFragment() {
     }
 
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(uri: Uri)
+        fun onPhotoSet(uri: Uri)
     }
 
 
@@ -59,13 +59,13 @@ class PhotoDialogFragment : DialogFragment() {
 
         if (requestCode == mPicture.CAMERA_TAKE_PICTURE_CODE) {
             if (resultCode == RESULT_OK) {
-               listener?.onFragmentInteraction(mPicture.imageUri!!)
+               listener?.onPhotoSet(mPicture.imageUri!!)
                 dismiss()
             }
         }else if (requestCode == mPicture.GET_PICTURE_CODE) {
 
             if (resultCode == RESULT_OK) {
-                listener?.onFragmentInteraction(data?.data!!)
+                listener?.onPhotoSet(data?.data!!)
                 dismiss()
             }
         }

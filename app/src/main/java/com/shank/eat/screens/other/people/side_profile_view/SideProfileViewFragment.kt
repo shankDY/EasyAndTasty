@@ -11,6 +11,8 @@ import com.shank.eat.screens.common.BaseFragment
 import com.shank.eat.screens.common.loadUserPhoto
 import kotlinx.android.synthetic.main.fragment_side_profile_view.*
 
+/** Данный класс отвечает за показ профиля пользователя, на которого кликнул наш авторизированный
+ * в данный момент пользователь**/
 class SideProfileViewFragment : BaseFragment() {
     override fun provideYourFragmentView(
         inflater: LayoutInflater,
@@ -34,6 +36,7 @@ class SideProfileViewFragment : BaseFragment() {
             mViewModel.init(userId)
         }
 
+        //получаем нашего пользователя
         mViewModel.user.observe(viewLifecycleOwnerLiveData.value!!, Observer {user ->
             username_text.text = user?.name
             profile_image.loadUserPhoto(user?.photo)

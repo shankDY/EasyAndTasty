@@ -13,6 +13,7 @@ import com.shank.eat.screens.other.favorite_recipes.FavoriteRecipesViewModel
 import com.shank.eat.screens.other.people.search_people.SearchPeopleViewModel
 import com.shank.eat.screens.btm_navigation.products.ProductsViewModel
 import com.shank.eat.screens.btm_navigation.products.shoping_list.ShopingListOpenViewModel
+import com.shank.eat.screens.btm_navigation.profile.edit.EditProfileViewModel
 import com.shank.eat.screens.other.favorite_recipes.recipe.FavoriteRecipeViewModel
 import com.shank.eat.screens.other.my_recipes.MyRecipesViewModel
 import com.shank.eat.screens.other.people.side_profile_view.SideProfileViewViewModel
@@ -65,6 +66,8 @@ class ViewModelFactory(private val app: App,
                 MyRecipesViewModel(onFailureListener,recipesRepo,usersRepo) as T
             modelClass.isAssignableFrom(SideProfileViewViewModel::class.java) ->
                 SideProfileViewViewModel(onFailureListener,recipesRepo,usersRepo) as T
+            modelClass.isAssignableFrom(EditProfileViewModel::class.java) ->
+                EditProfileViewModel(onFailureListener,usersRepo) as T
             else -> error("Unknow view model class $modelClass")
         }
     }

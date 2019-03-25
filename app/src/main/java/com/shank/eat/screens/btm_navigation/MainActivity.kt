@@ -9,9 +9,11 @@ import com.shank.eat.screens.common.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider, PhotoDialogFragment.OnFragmentInteractionListener{
+class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider,
+    PhotoDialogFragment.OnFragmentInteractionListener, PasswordDialog.Listener{
 
     var img: Uri? = null
+    var password: String? = null
     private val navController by lazy(LazyThreadSafetyMode.NONE){
         Navigation.findNavController(this, R.id.btm_nav_host)
     }
@@ -49,8 +51,11 @@ class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider, Photo
     override fun onBackPressed() = bottomNavController.onBackPressed()
 
 
-    override fun onFragmentInteraction(uri: Uri) {
+    override fun onPhotoSet(uri: Uri) {
         this.img = uri
+    }
+    override fun onPasswordConfirm(password: String) {
+        this.password = password
     }
     companion object {
         const val TAG = "MainActivity"

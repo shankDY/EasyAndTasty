@@ -83,16 +83,5 @@ class SearchPeopleFragment : BaseFragment(),
     companion object {
         const val TAG = "SearchPeopleFragment"
     }
-
-    override fun onStart() {
-        super.onStart()
-        //скрываем NavigationBottom при входе во фрагмент
-        hideBottomNavigation()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //показываем NavigationBottom при выходе из фрагмента
-        showBottomNavigation()
-    }
+    
 }

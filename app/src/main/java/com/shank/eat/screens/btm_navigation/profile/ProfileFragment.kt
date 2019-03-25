@@ -48,6 +48,7 @@ class ProfileFragment : BaseFragment(){
         favorite.setOnClickListener { findNavController().navigate(R.id.action_nav_item_profile_to_favorite) }
         my_recipes.setOnClickListener { findNavController().navigate(R.id.action_nav_item_profile_to_my_recipes) }
         seach_people.setOnClickListener { findNavController().navigate(R.id.action_nav_item_profile_to_seach_people) }
+        eddit_profile.setOnClickListener { findNavController().navigate(R.id.action_nav_item_profile_to_edit_profile) }
 
     }
 

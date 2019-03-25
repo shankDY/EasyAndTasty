@@ -11,7 +11,7 @@ import com.shank.eat.screens.common.BaseViewModel
 
 class ProfileViewModel(onFailureListener: OnFailureListener,
                        private val recipesRepo: RecipesRepository,
-                       private val usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
+                       usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
 
     val user = usersRepo.getUser()
     private var  uid = usersRepo.currentUid()

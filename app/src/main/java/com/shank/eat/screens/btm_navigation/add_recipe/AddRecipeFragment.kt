@@ -12,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.shank.eat.R
 import com.shank.eat.model.User
 import com.shank.eat.screens.common.BaseFragment
@@ -41,7 +43,6 @@ class AddRecipeFragment : BaseFragment() {
     }
 
 
-    @SuppressLint("InflateParams")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -53,17 +54,16 @@ class AddRecipeFragment : BaseFragment() {
         //инициализируем наш PictureHelper
         mPicture = PictureHelper(this)
 
-        // по клику на imageVIew appbar - открываем галлерею
-//        recipe_image.setOnClickListener { mPicture.getPicture() }
-
         //по клику на  floatImg открываем камеру
         floatImg.setOnClickListener {
-            val dialog = PhotoDialogFragment()
-                dialog.show(childFragmentManager,"PhotoDialogFragment")
+
             //запрашиваем права
-//            getPermissions()
+            getPermissions()
+        }
 
-
+        //возвращение на предыдущий фрагмент
+        back_img_recipe.setOnClickListener {
+            requireActivity().onBackPressed()
         }
 
 
@@ -137,29 +137,6 @@ class AddRecipeFragment : BaseFragment() {
 
     }
 
-    //если requestCode соответствует , то рисуем картинку и отображаем наше фото на экране постинга
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == mPicture.CAMERA_TAKE_PICTURE_CODE) {
-//            if (resultCode == RESULT_OK) {
-//                imgUri = mPicture.imageUri
-//
-//                setImage(imgUri)
-//
-//
-//                Log.d(TAG, imgUri?.path)
-//            }
-//        }else if (requestCode == mPicture.GET_PICTURE_CODE) {
-//
-//            if (resultCode == RESULT_OK) {
-//                imgUri = data?.data
-//                setImage(imgUri)
-//                Log.d(TAG, imgUri?.path)
-//            }
-//        }
-//    }
-
 
     //загружаем картинку в imageView
     private fun setImage(uri: Uri?) {
@@ -173,37 +150,36 @@ class AddRecipeFragment : BaseFragment() {
         if (context?.checkSelfPermission(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED) {
-
-
-            // Permission is not granted
+            // разрешения не предоставлены
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(getBaseActivity(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-            } else {
-                // No explanation needed, we can request the permission.
+
                 ActivityCompat.requestPermissions(activity!!,
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
                     MY_PERMISSIONS_REQUEST)
-
-                // MY_PERMISSIONS_REQUEST is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
+            } else {
+                // тут лучше показать объяснение, для чего необходима камера. посредством диалога(реализовать диалог объяснения)
+                ActivityCompat.requestPermissions(activity!!,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
+                    MY_PERMISSIONS_REQUEST)
             }
         } else {
             // Permission has already been granted
-            mPicture.takeCameraPicture()
-
+            PhotoDialogFragment().show(childFragmentManager,"PhotoDialogFragment")
         }
 
     }
 
     override fun onStart() {
         super.onStart()
+        hideBottomNavigation()
         imgUri = (context as MainActivity).img
         setImage(imgUri)
+    }
+    override fun onStop() {
+        super.onStop()
+        showBottomNavigation()
     }
     //обработка ответа на  разрешении
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -212,23 +188,16 @@ class AddRecipeFragment : BaseFragment() {
             MY_PERMISSIONS_REQUEST -> {
                 // If request is cancelled, the result arrays are empty.
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    mPicture.getPicture()
+                    // разрешение предоставленно, можно выполнять действия
+                    PhotoDialogFragment().show(childFragmentManager,"PhotoDialogFragment")
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    Log.d(TAG,"разрешения отклонены")
                 }
                 return
             }
-
-            // Add other 'when' lines to check for other
-            // permissions this app might request.
-            else -> {
-                // Ignore all other requests.
-            }
         }
     }
+
     companion object {
         const val TAG = "AddRecipeFragment"
     }

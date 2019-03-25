@@ -70,7 +70,7 @@
     <string name="posts">Рецептов</string>
     <string name="followers">Подписчики</string>
     <string name="following">Подписки</string>
-    <string name="edit_profile">Редактировать профиль</string>
+    <string name="edit_profile">Изменить профиль</string>
     <string name="follow_btn_text">Подписаться</string>
     <string name="unfollow_btn_text">Отменить</string>
     <string name="discover_people">Поиск людей</string>
@@ -93,8 +93,14 @@
     <string name="favorite_text">Посмотреть любимые рецепты</string>
     <string name="my_recipe_text">Посмотреть свои рецепты</string>
     <string name="search_people">Найти друзей</string>
-    <string name="search_people_text">Находи, знакомься, вдохновляйся</string>
+    <string name="search_people_text">Поиск вдохновления</string>
     <string name="setting">Настройки</string>
     <string name="setting_text">Открыть настройки приложения</string>
     <string name="edit_profile_text">Создай себя</string>
+    <string name="hint_phone">Телефон</string>
+    <string name="hint_website">Социальные сети</string>
+    <string name="please_enter_name">Пожалуйста введите имя</string>
+    <string name="profile_saved">Профиль успешно изменен</string>
+    <string name="please_enter_password">Пожалуйста введите пароль</string>
+    <string name="you_should_enter_your_password">Вы должны указать свой пароль для изменения email</string>
 </resources>

@@ -26,7 +26,7 @@
 
         <!-- -->
         <activity android:name=".screens.btm_navigation.MainActivity"
-                  android:windowSoftInputMode="adjustPan">
+                  android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,8 +34,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".screens.register_and_login_screens.HostLoginActivity"
-                  android:windowSoftInputMode="adjustResize|stateVisible"/>
+        <activity android:name=".screens.register_and_login_screens.HostLoginActivity"/>
 
         <provider
                 android:name="android.support.v4.content.FileProvider"

@@ -35,4 +35,8 @@ interface UsersRepository {
     fun addFollower(fromUid: String, toUid: String): Task<Unit>
     //отписаться от юзера
     fun deleteFollower(fromUid: String, toUid: String): Task<Unit>
+    //изменение профиля пользователя
+    fun updateUserProfile(currentUser: User, newUser: User): Task<Unit>
+
+    fun updateEmail(currentEmail: String, newEmail: String, password: String): Task<Unit>
 }

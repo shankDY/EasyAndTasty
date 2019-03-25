@@ -4,6 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -62,7 +63,8 @@
 
     <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -225,7 +227,7 @@
 
             <Space android:id="@+id/space"
                    android:layout_width="match_parent"
-                   android:layout_height="20dp"
+                   android:layout_height="10dp"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"/>
@@ -236,7 +238,7 @@
             android:id="@+id/floatImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/ic_photo_camera"
             app:layout_anchor="@+id/appbar"
             app:layout_anchorGravity="right|bottom"/>

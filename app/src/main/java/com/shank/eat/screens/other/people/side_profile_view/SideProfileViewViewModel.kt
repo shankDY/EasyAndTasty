@@ -17,6 +17,7 @@ class SideProfileViewViewModel(onFailureListener: OnFailureListener,
     //получаем пользователя
     lateinit var user: LiveData<User>
     lateinit var recipes: LiveData<List<Recipe>>
+    //наш авторизированный пользователь
     val currentUid: String = usersRepo.currentUid()!!
     //uid пользователя, данные которого мы хотим получить
     lateinit var userId: String

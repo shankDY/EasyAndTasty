@@ -15,6 +15,7 @@
                 app:destination="@id/seach_people"/>
         <action android:id="@+id/action_nav_item_profile_to_my_recipes"
                 app:destination="@id/my_recipes"/>
+        <action android:id="@+id/action_nav_item_profile_to_edit_profile" app:destination="@id/edit_profile"/>
     </fragment>
 
     <navigation android:id="@+id/favorite"
@@ -70,6 +71,14 @@
                   android:name="com.shank.eat.screens.other.recipes.RecipeFragment"
                   android:label="RecipeFragment"
                   tools:layout="@layout/fragment_recipe"/>
+    </navigation>
+
+    <navigation android:id="@+id/edit_profile"
+                app:startDestination="@id/editProfileFragment">
+        <fragment android:id="@+id/editProfileFragment"
+                  android:name="com.shank.eat.screens.btm_navigation.profile.edit.EditProfileFragment"
+                  android:label="EditProfileFragment"
+                  tools:layout="@layout/fragment_edit_profile"/>
     </navigation>
 
 

@@ -5,6 +5,7 @@ import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.database.DataSnapshot
 import com.shank.eat.common.toUnit
 import com.shank.eat.data.UsersRepository
@@ -31,6 +32,37 @@ class FirebaseUsersRepository : UsersRepository {
                 database.child("users").child(it!!.user.uid).setValue(user)
             }.toUnit()
 
+    /**
+    обновление полей юзера , которые изменились
+    если поле изменилось мы добавляем элемент в карту и  сохраняем изменение в базу
+     **/
+    override fun updateUserProfile(currentUser: User, newUser: User): Task<Unit> {
+        //карта , с измененными полями юзера
+        val updatesMap = mutableMapOf<String,Any?>()
+
+        if (newUser.name != currentUser.name) updatesMap["name"] = newUser.name
+        if (newUser.website != currentUser.website) updatesMap["website"] = newUser.website
+        if (newUser.email != currentUser.email) updatesMap["email"] = newUser.email
+        if (newUser.phone != currentUser.phone) updatesMap["phone"] = newUser.phone
+
+        return database.child("users").child(currentUid()!!).updateChildren(updatesMap).toUnit()
+    }
+
+    //изменение email юзера
+    override fun updateEmail(currentEmail: String, newEmail: String, password: String): Task<Unit> {
+        val currentUser = auth.currentUser
+
+        return if (currentUser != null) {
+            val credential = EmailAuthProvider.getCredential(currentEmail, password)
+            //реаутентикейт пользователя, для смены email
+            currentUser.reauthenticate(credential).onSuccessTask {
+                //update email in auth
+                currentUser.updateEmail(newEmail)
+            }.toUnit()
+        } else{
+            Tasks.forException(IllegalStateException("User is no authenticated"))
+        }
+    }
 
     //проверка уникальности email
     override fun isUserExistsForEmail(email: String): Task<Boolean> =
